@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en-PH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Groundmasters.ph | Golf Course &amp; Turf Equipment Philippines</title>
+  <meta name="description" content="Groundmasters.ph by SJK-Guahan Inc: Jacobsen, Smithco, Husqvarna, Campey, ISEKI, Wacker Neuson and Trimax turf and grounds equipment in the Philippines. All prices in Philippine Peso (₱)." />
+  <link rel="icon" type="image/png" href="assets/gm-mark.png" />
+  <link rel="apple-touch-icon" href="assets/gm-mark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #037A55;
+      --green-deep: #0B3D2C;
+      --gold: #C9952F;
+      --gold-soft: #F3E6C7;
+      --paper: #F7F5EE;
+      --surface: #FFFFFF;
+      --ink: #17221C;
+      --muted: #5B675F;
+      --line: #E1DDCF;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Archivo", system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand img { height: 40px; width: auto; }
+    .brand span { font-weight: 800; font-stretch: 112%; letter-spacing: .02em; color: var(--green-deep); }
+    .brand span b { color: var(--gold); font-weight: 800; }
+    nav ul { list-style: none; display: flex; gap: 26px; margin: 0; padding: 0; }
+    nav a { text-decoration: none; font-weight: 600; font-size: 15px; color: var(--muted); }
+    nav a:hover { color: var(--green); }
+    .quote-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green); color: #fff; border: 0; border-radius: 999px;
+      padding: 10px 18px; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; text-decoration: none;
+    }
+    .quote-btn:hover { background: var(--green-deep); }
+    .quote-count {
+      background: var(--gold); color: var(--green-deep); border-radius: 999px;
+      min-width: 22px; height: 22px; display: inline-grid; place-items: center; font-size: 12px; padding: 0 6px;
+    }
+
+    /* Hero */
+    .hero {
+      background:
+        radial-gradient(1200px 500px at 85% -10%, rgba(201,149,47,.25), transparent 60%),
+        linear-gradient(160deg, var(--green-deep), var(--green));
+      color: #fff;
+      padding: 84px 0 96px;
+      overflow: hidden;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 48px; align-items: center; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: 13px; font-weight: 700; color: var(--gold); margin: 0 0 14px; }
+    .hero h1 { font-size: clamp(36px, 6vw, 64px); line-height: 1.02; font-stretch: 115%; font-weight: 900; margin: 0 0 18px; }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero p.lead { font-size: 19px; max-width: 560px; color: rgba(255,255,255,.86); margin: 0 0 30px; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn-gold {
+      background: var(--gold); color: var(--green-deep); text-decoration: none; font-weight: 800;
+      padding: 14px 24px; border-radius: 999px;
+    }
+    .btn-ghost {
+      border: 1.5px solid rgba(255,255,255,.55); color: #fff; text-decoration: none; font-weight: 700;
+      padding: 13px 22px; border-radius: 999px;
+    }
+    .hero-card {
+      background: #fff; border-radius: 22px; padding: 28px; box-shadow: 0 30px 60px rgba(0,0,0,.25);
+    }
+    .hero-card img { width: 100%; }
+    .peso-badge {
+      margin-top: 18px; display: flex; align-items: center; gap: 12px;
+      background: var(--gold-soft); border-radius: 12px; padding: 12px 14px; color: var(--green-deep); font-size: 14px;
+    }
+    .peso-badge strong { font-size: 28px; line-height: 1; color: var(--gold); }
+
+    /* Stats strip */
+    .stats { background: var(--surface); border-bottom: 1px solid var(--line); }
+    .stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat { padding: 26px 20px; border-left: 1px solid var(--line); }
+    .stat:first-child { border-left: 0; }
+    .stat b { display: block; font-size: 30px; font-stretch: 112%; color: var(--green); }
+    .stat span { color: var(--muted); font-size: 14px; }
+
+    section { padding: 80px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 34px; flex-wrap: wrap; }
+    .section-head h2 { font-size: clamp(28px, 4vw, 40px); font-stretch: 112%; margin: 0; line-height: 1.1; color: var(--green-deep); }
+    .section-head p { margin: 6px 0 0; color: var(--muted); max-width: 560px; }
+
+    /* Brands */
+    .brands { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+    .brand-card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 22px; cursor: pointer; text-align: left; font: inherit; color: inherit;
+      transition: border-color .15s, transform .15s;
+    }
+    .brand-card:hover { border-color: var(--green); transform: translateY(-2px); }
+    .brand-card h3 { margin: 0 0 4px; font-size: 22px; font-stretch: 112%; color: var(--green-deep); }
+    .brand-card .tag { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--gold); font-weight: 700; }
+    .brand-card p { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
+
+    /* Catalog */
+    #catalog { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .chip {
+      border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 8px 14px;
+      font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--muted);
+    }
+    .chip[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: #fff; }
+    .search {
+      width: 100%; max-width: 340px; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--line);
+      font: inherit; background: var(--paper);
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+    .product {
+      border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; display: flex; flex-direction: column;
+      background: var(--paper);
+    }
+    .product .pb { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; color: var(--gold); }
+    .product h4 { margin: 4px 0 2px; font-size: 19px; font-stretch: 108%; color: var(--green-deep); }
+    .product .cat { color: var(--muted); font-size: 14px; flex: 1; }
+    .product .price { margin: 14px 0 12px; font-weight: 800; font-size: 20px; color: var(--ink); }
+    .product .price small { display: block; font-weight: 500; font-size: 12px; color: var(--muted); }
+    .add {
+      border: 1.5px solid var(--green); background: transparent; color: var(--green);
+      border-radius: 999px; padding: 9px 12px; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer;
+    }
+    .add.added { background: var(--green); color: #fff; }
+    .empty { color: var(--muted); padding: 30px 0; }
+    .price-note { margin-top: 22px; font-size: 13px; color: var(--muted); }
+
+    /* Services */
+    .services { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+    .service { background: var(--surface); border-radius: var(--radius); padding: 24px; border-top: 4px solid var(--gold); }
+    .service h3 { margin: 0 0 8px; color: var(--green-deep); font-stretch: 108%; }
+    .service p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    /* Calculator */
+    .calc { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; background: var(--green-deep); color: #fff; border-radius: 22px; padding: 34px; }
+    .calc h2 { color: #fff; }
+    .calc label { display: block; font-size: 14px; font-weight: 600; margin: 14px 0 6px; color: rgba(255,255,255,.8); }
+    .calc input, .calc select {
+      width: 100%; padding: 12px 14px; border-radius: 10px; border: 0; font: inherit; font-size: 16px;
+    }
+    .calc-out { background: rgba(255,255,255,.08); border-radius: 16px; padding: 24px; align-self: stretch; }
+    .calc-out dl { margin: 0; display: grid; grid-template-columns: 1fr auto; gap: 10px 16px; }
+    .calc-out dt { color: rgba(255,255,255,.75); }
+    .calc-out dd { margin: 0; font-weight: 700; text-align: right; }
+    .calc-out .big { font-size: 30px; color: var(--gold); }
+
+    /* Quote drawer */
+    .drawer-bg { position: fixed; inset: 0; background: rgba(0,0,0,.4); display: none; z-index: 40; }
+    .drawer {
+      position: fixed; top: 0; right: 0; height: 100%; width: min(440px, 100%); background: #fff; z-index: 50;
+      transform: translateX(100%); transition: transform .25s; display: flex; flex-direction: column;
+    }
+    .drawer.open { transform: none; }
+    .drawer-bg.open { display: block; }
+    .drawer header { position: static; display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; }
+    .drawer header h3 { margin: 0; color: var(--green-deep); }
+    .x { border: 0; background: none; font-size: 26px; cursor: pointer; color: var(--muted); }
+    .drawer-body { flex: 1; overflow: auto; padding: 16px 20px; }
+    .line { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .line small { color: var(--muted); display: block; }
+    .qty { width: 56px; padding: 6px; border-radius: 8px; border: 1px solid var(--line); font: inherit; }
+    .rm { border: 0; background: none; color: #B0492F; cursor: pointer; font-size: 13px; }
+    .totals { padding: 16px 20px; border-top: 1px solid var(--line); background: var(--paper); }
+    .totals div { display: flex; justify-content: space-between; margin: 4px 0; }
+    .totals .grand { font-size: 20px; font-weight: 800; color: var(--green-deep); }
+    .form { display: grid; gap: 8px; margin-top: 12px; }
+    .form input, .form textarea { padding: 10px 12px; border-radius: 8px; border: 1px solid var(--line); font: inherit; }
+
+    /* Contact + footer */
+    .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .contact-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+    .contact-card h3 { margin: 0 0 10px; color: var(--green-deep); }
+    .contact-card p { margin: 6px 0; color: var(--muted); }
+    footer { background: var(--green-deep); color: rgba(255,255,255,.75); padding: 40px 0; font-size: 14px; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
+    footer img { height: 54px; width: auto; background: #fff; border-radius: 10px; padding: 6px 10px; }
+
+    @media (max-width: 880px) {
+      nav ul { display: none; }
+      .hero { padding: 56px 0 64px; }
+      .hero-grid, .calc, .contact { grid-template-columns: 1fr; }
+      .hero-card { max-width: 380px; }
+      .stats .wrap { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(3) { border-left: 0; }
+      .stat { border-top: 1px solid var(--line); }
+      section { padding: 56px 0; }
+      .calc { padding: 22px; }
+    }
+    @media (max-width: 420px) {
+      .brand span { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><img src="assets/gm-mark.png" alt="" /><span>GROUND<b>MASTERS</b>.PH</span></a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#brands">Brands</a></li>
+        <li><a href="#catalog">Equipment</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#calculator">Payment Calculator</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="quote-btn" type="button" data-open-quote>My Quote <span class="quote-count" id="quoteCount">0</span></button>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Golf course &middot; Sports turf &middot; Grounds care</p>
+        <h1>The turf equipment the <em>Philippines</em> plays on.</h1>
+        <p class="lead">Groundmasters.ph supplies, delivers and services world-class mowers, aerators, sprayers, tractors and compact equipment for golf courses, resorts, parks, LGUs and government facilities, priced in Philippine Peso.</p>
+        <div class="hero-cta">
+          <a class="btn-gold" href="#catalog">Browse equipment</a>
+          <a class="btn-ghost" href="#contact">Talk to a turf specialist</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="assets/gm-logo.png" alt="Groundmasters.ph" />
+        <div class="peso-badge"><strong>₱</strong><span>All prices in Philippine Peso, VAT-inclusive. No dollar conversion, no forex surprises.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="wrap">
+      <div class="stat"><b>7</b><span>Global equipment brands</span></div>
+      <div class="stat"><b id="modelCount">0</b><span>Models in our lineup</span></div>
+      <div class="stat"><b>Luzon &amp; VisMin</b><span>Sales and service coverage</span></div>
+      <div class="stat"><b>₱</b><span>Peso pricing &amp; PhilGEPS-ready quotes</span></div>
+    </div>
+  </div>
+
+  <section id="brands">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Our brands</h2>
+          <p>One supplier for the whole course: from greens and fairways to bunkers, sprayers and earthworks.</p>
+        </div>
+      </div>
+      <div class="brands" id="brandGrid"></div>
+    </div>
+  </section>
+
+  <section id="catalog">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Equipment lineup</h2>
+          <p>Prices shown in Philippine Peso (₱). Add units to your quote and we'll send a formal peso proposal.</p>
+        </div>
+        <input class="search" id="search" type="search" placeholder="Search model, e.g. GX560" aria-label="Search equipment" />
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filter by brand"></div>
+      <div class="grid" id="productGrid"></div>
+      <p class="price-note">All prices are in Philippine Peso (₱), VAT-inclusive, ex-warehouse Manila. Delivery outside Metro Manila, extended warranty and optional accessories are quoted separately in ₱. Prices may change without prior notice; your formal quotation prevails.</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>More than equipment</h2>
+          <p>Backed by SJK-Guahan Inc's service team and parts inventory in Manila.</p>
+        </div>
+      </div>
+      <div class="services">
+        <div class="service"><h3>Delivery &amp; commissioning</h3><p>Nationwide delivery, unit set-up and operator orientation on site.</p></div>
+        <div class="service"><h3>Parts &amp; reel service</h3><p>Genuine parts, reel grinding and blade sharpening to keep greens tournament-ready.</p></div>
+        <div class="service"><h3>Preventive maintenance</h3><p>Scheduled PMS plans for fleets, priced per unit per year in ₱.</p></div>
+        <div class="service"><h3>Government &amp; PhilGEPS</h3><p>Formal peso quotations and documentation for LGU, AFP and agency procurement.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="calculator">
+    <div class="wrap">
+      <div class="calc">
+        <div>
+          <p class="eyebrow">Plan your budget</p>
+          <h2 style="margin:0;font-stretch:112%">Peso payment calculator</h2>
+          <label for="calcAmount">Equipment amount (₱)</label>
+          <input id="calcAmount" type="text" inputmode="numeric" value="1,000,000" />
+          <label for="calcDown">Down payment</label>
+          <select id="calcDown">
+            <option value="0.2">20%</option>
+            <option value="0.3" selected>30%</option>
+            <option value="0.5">50%</option>
+          </select>
+          <label for="calcTerm">Payment term</label>
+          <select id="calcTerm">
+            <option value="6">6 months</option>
+            <option value="12" selected>12 months</option>
+            <option value="24">24 months</option>
+          </select>
+        </div>
+        <div class="calc-out">
+          <dl>
+            <dt>Down payment</dt><dd id="outDown">₱0</dd>
+            <dt>Balance</dt><dd id="outBal">₱0</dd>
+            <dt>Monthly (indicative)</dt><dd class="big" id="outMonthly">₱0</dd>
+          </dl>
+          <p style="font-size:13px;color:rgba(255,255,255,.7);margin:18px 0 0">Indicative straight split of the balance, before any financing charges. Ask us about available payment terms; final terms are subject to credit approval.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head"><div><h2>Visit or call us</h2><p>Request a demo, a site assessment or a formal peso quotation.</p></div></div>
+      <div class="contact">
+        <div class="contact-card">
+          <h3>SJK-Guahan Inc &middot; Groundmasters.ph</h3>
+          <p>1877 Paz M Guazon St. cor Pres Quirino Ave.<br />Paco, Manila, Philippines</p>
+          <p>Phone: <a href="tel:+63277455089">(02) 7-745-50-89</a></p>
+          <p>Email: <a href="mailto:info@sjkguahan.com">info@sjkguahan.com</a></p>
+        </div>
+        <div class="contact-card">
+          <h3>Coverage</h3>
+          <p><strong>North Luzon</strong> &middot; <strong>South Luzon</strong> &middot; <strong>Visayas &amp; Mindanao</strong></p>
+          <p>Golf and country clubs, resorts, sports facilities, universities, LGUs, AFP and government agencies.</p>
+          <p><button class="quote-btn" type="button" data-open-quote>Start a quote</button></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/gm-logo.png" alt="Groundmasters.ph" />
+    <span>&copy; <span id="year"></span> SJK-Guahan Inc. All prices in Philippine Peso (₱).</span>
+  </div>
+</footer>
+
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="drawer" aria-label="Quote request">
+  <header>
+    <h3>My Quote</h3>
+    <button class="x" type="button" id="closeDrawer" aria-label="Close">&times;</button>
+  </header>
+  <div class="drawer-body" id="quoteLines"></div>
+  <div class="totals">
+    <div><span>Priced items</span><span id="tSub">₱0.00</span></div>
+    <div><span>Items to be quoted</span><span id="tTbq">0</span></div>
+    <div class="grand"><span>Estimated total</span><span id="tGrand">₱0.00</span></div>
+    <form class="form" id="quoteForm">
+      <input name="name" required placeholder="Full name" autocomplete="name" />
+      <input name="org" placeholder="Club / company / agency" autocomplete="organization" />
+      <input name="email" type="email" required placeholder="Email" autocomplete="email" />
+      <input name="phone" placeholder="Mobile number" autocomplete="tel" />
+      <textarea name="notes" rows="2" placeholder="Delivery location, timeline, notes"></textarea>
+      <button class="quote-btn" type="submit" style="justify-content:center">Send quote request</button>
+    </form>
+  </div>
+</aside>
+
+<script>
+  // ---------------------------------------------------------------------
+  // PRICES: all amounts are Philippine Peso (₱), VAT-inclusive.
+  // Set `price` to the SRP in pesos (e.g. 1080000). Leave it null to show
+  // "Price on request".
+  // ---------------------------------------------------------------------
+  const BRANDS = {
+    Jacobsen: { tag: "Mowers", blurb: "Greens, fairway, rough and trim mowers trusted by golf courses worldwide." },
+    Smithco: { tag: "Bunker & spray", blurb: "Sand Star bunker rakes, Spray Star sprayers, Sweep Star sweepers and greens rollers." },
+    Husqvarna: { tag: "Grounds care", blurb: "Hover mowers, lawn mowers, blowers, trimmers and brushcutters for daily upkeep." },
+    Campey: { tag: "Renovation", blurb: "Aerators, topdressers, scarifiers and turf renovation machinery." },
+    ISEKI: { tag: "Tractors", blurb: "Compact tractors and ride-on mowers built for turf and estate work." },
+    "Wacker Neuson": { tag: "Compact equipment", blurb: "Mini excavators, dumpers, rollers and compaction for course construction." },
+    Trimax: { tag: "Large-area mowing", blurb: "Heavy-duty rotary and flail mowers for roughs, parks and roadsides." },
+  };
+
+  const PRODUCTS = [
+    ["Jacobsen", "PGM22", "Walk-behind greens mower"],
+    ["Jacobsen", "Eclipse2 122F", "Walk-behind greens mower"],
+    ["Jacobsen", "Eclipse2 Elite", "Walk-behind greens mower"],
+    ["Jacobsen", "Greens King IV Plus", "Riding greens mower"],
+    ["Jacobsen", "GP400", "Riding greens mower"],
+    ["Jacobsen", "SLF530", "Lightweight fairway mower"],
+    ["Jacobsen", "LF550", "Fairway mower"],
+    ["Jacobsen", "LF570", "Fairway mower"],
+    ["Jacobsen", "AR321", "Rotary rough mower"],
+    ["Jacobsen", "AR331", "Rotary rough mower"],
+    ["Jacobsen", "AR530", "Rotary rough mower"],
+    ["Jacobsen", "AR730", "Rotary rough mower"],
+    ["Jacobsen", "TR320", "Trim & surrounds mower"],
+    ["Jacobsen", "TR330", "Trim & surrounds mower"],
+    ["Smithco", "Sand Star I", "Bunker rake"],
+    ["Smithco", "Sand Star III", "Bunker rake"],
+    ["Smithco", "Sweep Star 48", "Turf sweeper"],
+    ["Smithco", "Sweep Star 60", "Turf sweeper"],
+    ["Smithco", "Sweep Star V-62", "Turf sweeper"],
+    ["Smithco", "Spray Star 1100", "Turf sprayer"],
+    ["Smithco", "Spray Star 1200", "Turf sprayer"],
+    ["Smithco", "Spray Star 1300", "Turf sprayer"],
+    ["Smithco", "Tournament Ultra Lite 7576", "Greens roller"],
+    ["Smithco", "Tournament XL 7000", "Greens roller"],
+    ["Smithco", "AER-8", "Aerator"],
+    ["Husqvarna", "GX560", "Hover mower"],
+    ["Husqvarna", "LC353", "Lawn mower"],
+    ["Husqvarna", "LC356", "Lawn mower"],
+    ["Husqvarna", "125B", "Handheld blower"],
+    ["Husqvarna", "350BT", "Backpack blower"],
+    ["Husqvarna", "321S15", "Hedge trimmer"],
+    ["Husqvarna", "320SM", "Edger"],
+    ["Husqvarna", "120 Mark II", "Chainsaw"],
+    ["Husqvarna", "140 Mark II", "Chainsaw"],
+    ["Husqvarna", "143R-II", "Brushcutter"],
+    ["Husqvarna", "321R", "Brushcutter"],
+    ["Husqvarna", "TS 342", "Lawn tractor"],
+    ["Husqvarna", "R216", "Rider mower"],
+    ["Campey", "Air2G2", "Air injection aerator"],
+    ["Campey", "Koro FTM 1.2", "Field top maker"],
+    ["Campey", "Verti-Drain 7316", "Deep tine aerator"],
+    ["Campey", "Verti-Drain 7416", "Deep tine aerator"],
+    ["Campey", "Shockwave 210", "Linear decompactor"],
+    ["Campey", "Shockwave 220", "Linear decompactor"],
+    ["Campey", "BM50-1600", "Overseeder / brush"],
+    ["Campey", "BM50-1800", "Overseeder / brush"],
+    ["Campey", "Rotoblast", "Renovation machine"],
+    ["Campey", "Rotoknife", "Slitter"],
+    ["Campey", "Rhea Scarifier", "Scarifier"],
+    ["Campey", "Sandcat", "Sand spreader"],
+    ["Campey", "Rotosweep", "Sweeper / collector"],
+    ["Campey", "Root Pruner", "Root pruner"],
+    ["Campey", "Topdrain 1000", "Drainage machine"],
+    ["Campey", "Dakota 310", "Topdresser"],
+    ["Campey", "Dakota 410", "Topdresser"],
+    ["Campey", "Dakota 440", "Topdresser"],
+    ["Campey", "Dakota Turf Trailer", "Turf trailer"],
+    ["Campey", "Aeraseeder", "Seeder"],
+    ["Campey", "Line Marker", "Line marker"],
+    ["ISEKI", "NT542", "Compact tractor"],
+    ["ISEKI", "NT554", "Compact tractor"],
+    ["ISEKI", "SXG324", "Ride-on mower"],
+    ["ISEKI", "SF237", "Front mower"],
+    ["ISEKI", "SF551", "Front mower"],
+    ["ISEKI", "SRA 800", "Ride-on mower"],
+    ["Wacker Neuson", "ET08", "Mini excavator"],
+    ["Wacker Neuson", "ET66", "Compact excavator"],
+    ["Wacker Neuson", "ET75", "Compact excavator"],
+    ["Wacker Neuson", "EZ17", "Zero-tail mini excavator"],
+    ["Wacker Neuson", "EZ20", "Zero-tail mini excavator"],
+    ["Wacker Neuson", "EZ28", "Zero-tail mini excavator"],
+    ["Wacker Neuson", "DT10", "Track dumper"],
+    ["Wacker Neuson", "DT15", "Track dumper"],
+    ["Wacker Neuson", "DW30", "Wheel dumper"],
+    ["Wacker Neuson", "RD7", "Ride-on roller"],
+    ["Wacker Neuson", "BS60", "Rammer"],
+    ["Wacker Neuson", "Reversible Vibratory Plate", "Plate compactor"],
+    ["Wacker Neuson", "PT3A", "Trash pump"],
+    ["Wacker Neuson", "PT6YT", "Trash pump"],
+    ["Trimax", "Pegasus S5", "Rotary mower"],
+    ["Trimax", "Procut S5", "Rotary mower"],
+    ["Trimax", "Striker", "Flail mower"],
+    ["Trimax", "Snake S3", "Wide-area mower"],
+    ["Trimax", "Warlord S3", "Flail mower"],
+    ["Trimax", "Ezeemow", "Rotary mower"],
+  ].map(([brand, model, category], i) => ({ id: i, brand, model, category, price: null }));
+
+  const peso = (n) => "₱" + Number(n || 0).toLocaleString("en-PH", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const pesoWhole = (n) => "₱" + Math.round(Number(n) || 0).toLocaleString("en-PH");
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  // Quote list survives a reload on this device only.
+  let quote = {};
+  try { quote = JSON.parse(localStorage.getItem("gm-quote") || "{}"); } catch (e) { quote = {}; }
+  const saveQuote = () => { try { localStorage.setItem("gm-quote", JSON.stringify(quote)); } catch (e) {} };
+
+  let activeBrand = "All";
+  let query = "";
+
+  document.getElementById("modelCount").textContent = PRODUCTS.length;
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Brands
+  document.getElementById("brandGrid").innerHTML = Object.entries(BRANDS).map(([name, b]) => {
+    const n = PRODUCTS.filter((p) => p.brand === name).length;
+    return `<button class="brand-card" type="button" data-brand="${esc(name)}">
+      <span class="tag">${esc(b.tag)}</span><h3>${esc(name)}</h3><p>${esc(b.blurb)}</p>
+      <p><strong style="color:var(--green)">${n} models &rarr;</strong></p></button>`;
+  }).join("");
+  document.getElementById("brandGrid").addEventListener("click", (e) => {
+    const card = e.target.closest("[data-brand]");
+    if (!card) return;
+    activeBrand = card.dataset.brand;
+    renderFilters(); renderProducts();
+    document.getElementById("catalog").scrollIntoView();
+  });
+
+  // Filters
+  function renderFilters() {
+    const names = ["All", ...Object.keys(BRANDS)];
+    document.getElementById("filters").innerHTML = names.map((n) =>
+      `<button class="chip" type="button" data-f="${esc(n)}" aria-pressed="${n === activeBrand}">${esc(n)}</button>`).join("");
+  }
+  document.getElementById("filters").addEventListener("click", (e) => {
+    const c = e.target.closest("[data-f]");
+    if (!c) return;
+    activeBrand = c.dataset.f; renderFilters(); renderProducts();
+  });
+  document.getElementById("search").addEventListener("input", (e) => { query = e.target.value.trim().toLowerCase(); renderProducts(); });
+
+  // Products
+  function priceHtml(p) {
+    return p.price != null
+      ? `${peso(p.price)}<small>VAT-inclusive</small>`
+      : `₱ Price on request<small>Formal peso quote within 1 business day</small>`;
+  }
+  function renderProducts() {
+    const list = PRODUCTS.filter((p) =>
+      (activeBrand === "All" || p.brand === activeBrand) &&
+      (!query || `${p.brand} ${p.model} ${p.category}`.toLowerCase().includes(query)));
+    document.getElementById("productGrid").innerHTML = list.length ? list.map((p) => {
+      const inQ = quote[p.id];
+      return `<article class="product">
+        <span class="pb">${esc(p.brand)}</span>
+        <h4>${esc(p.model)}</h4>
+        <span class="cat">${esc(p.category)}</span>
+        <div class="price">${priceHtml(p)}</div>
+        <button class="add ${inQ ? "added" : ""}" type="button" data-add="${p.id}">${inQ ? "✓ In quote" : "Add to quote"}</button>
+      </article>`;
+    }).join("") : `<p class="empty">No equipment matches "${esc(query)}".</p>`;
+  }
+  document.getElementById("productGrid").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-add]");
+    if (!b) return;
+    const id = b.dataset.add;
+    if (quote[id]) delete quote[id]; else quote[id] = 1;
+    saveQuote(); renderProducts(); renderQuote();
+  });
+
+  // Quote drawer
+  const drawer = document.getElementById("drawer");
+  const drawerBg = document.getElementById("drawerBg");
+  const openDrawer = () => { drawer.classList.add("open"); drawerBg.classList.add("open"); };
+  const closeDrawer = () => { drawer.classList.remove("open"); drawerBg.classList.remove("open"); };
+  document.querySelectorAll("[data-open-quote]").forEach((b) => b.addEventListener("click", openDrawer));
+  document.getElementById("closeDrawer").addEventListener("click", closeDrawer);
+  drawerBg.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawer(); });
+
+  function quoteItems() {
+    return Object.entries(quote).map(([id, qty]) => ({ p: PRODUCTS[id], qty })).filter((x) => x.p);
+  }
+  function renderQuote() {
+    const items = quoteItems();
+    document.getElementById("quoteCount").textContent = items.reduce((s, x) => s + x.qty, 0);
+    document.getElementById("quoteLines").innerHTML = items.length ? items.map(({ p, qty }) => `
+      <div class="line">
+        <div><strong>${esc(p.brand)} ${esc(p.model)}</strong><small>${p.price != null ? peso(p.price) + " each" : "₱ price on request"}</small></div>
+        <input class="qty" type="number" min="1" value="${qty}" data-qty="${p.id}" aria-label="Quantity" />
+        <button class="rm" type="button" data-rm="${p.id}">Remove</button>
+      </div>`).join("") : `<p class="empty">Your quote is empty. Add equipment from the lineup.</p>`;
+    const sub = items.reduce((s, x) => s + (x.p.price || 0) * x.qty, 0);
+    const tbq = items.filter((x) => x.p.price == null).reduce((s, x) => s + x.qty, 0);
+    document.getElementById("tSub").textContent = peso(sub);
+    document.getElementById("tTbq").textContent = tbq;
+    document.getElementById("tGrand").textContent = tbq ? `${peso(sub)} + TBQ` : peso(sub);
+  }
+  document.getElementById("quoteLines").addEventListener("input", (e) => {
+    const id = e.target.dataset.qty;
+    if (id == null) return;
+    quote[id] = Math.max(1, parseInt(e.target.value, 10) || 1);
+    saveQuote(); renderQuote();
+  });
+  document.getElementById("quoteLines").addEventListener("click", (e) => {
+    const id = e.target.dataset.rm;
+    if (id == null) return;
+    delete quote[id]; saveQuote(); renderQuote(); renderProducts();
+  });
+  document.getElementById("quoteForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const items = quoteItems();
+    const lines = items.map(({ p, qty }) => `- ${qty} x ${p.brand} ${p.model} (${p.price != null ? peso(p.price) + " each" : "price on request"})`);
+    const body = [
+      `Name: ${f.get("name")}`, `Organization: ${f.get("org")}`, `Email: ${f.get("email")}`, `Mobile: ${f.get("phone")}`, "",
+      "Equipment (all amounts in Philippine Peso):", ...(lines.length ? lines : ["- (none selected)"]), "",
+      `Estimated total: ${document.getElementById("tGrand").textContent}`, "", `Notes: ${f.get("notes")}`,
+    ].join("\n");
+    location.href = `mailto:info@sjkguahan.com?subject=${encodeURIComponent("Groundmasters.ph quote request")}&body=${encodeURIComponent(body)}`;
+  });
+
+  // Payment calculator
+  const calcAmount = document.getElementById("calcAmount");
+  function calc() {
+    const amt = parseFloat(calcAmount.value.replace(/[^\d.]/g, "")) || 0;
+    const down = amt * parseFloat(document.getElementById("calcDown").value);
+    const bal = amt - down;
+    const term = parseInt(document.getElementById("calcTerm").value, 10);
+    document.getElementById("outDown").textContent = pesoWhole(down);
+    document.getElementById("outBal").textContent = pesoWhole(bal);
+    document.getElementById("outMonthly").textContent = pesoWhole(bal / term);
+  }
+  calcAmount.addEventListener("input", calc);
+  calcAmount.addEventListener("blur", () => {
+    const n = parseFloat(calcAmount.value.replace(/[^\d.]/g, "")) || 0;
+    calcAmount.value = Math.round(n).toLocaleString("en-PH");
+  });
+  document.getElementById("calcDown").addEventListener("change", calc);
+  document.getElementById("calcTerm").addEventListener("change", calc);
+
+  renderFilters(); renderProducts(); renderQuote(); calc();
+</script>
+</body>
+</html>
