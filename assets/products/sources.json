@@ -1,0 +1,427 @@
+{
+ "PGM22": {
+  "file": "pgm22.webp",
+  "src": "https://www.jacobsen.com/sites/default/files/_images/product_base/product/PGM%2022%20Product.png",
+  "page": "https://www.jacobsen.com/golf-mowers/pgm22"
+ },
+ "Eclipse2 122F": {
+  "file": "eclipse2-122f.webp",
+  "src": "https://www.jacobsen.com/sites/default/files/_images/product_base/product/Eclipse%202_cc.png",
+  "page": "https://www.jacobsen.com/golf-mowers/eclipse-2-hybrid"
+ },
+ "Eclipse2 Elite": {
+  "file": "eclipse2-elite.webp",
+  "src": "https://www.jacobsen.com/sites/default/files/_images/product_base/product/Eclipse%202_cc.png",
+  "page": "https://www.jacobsen.com/golf-mowers/eclipse-2-elite"
+ },
+ "Greens King IV Plus": {
+  "file": "greens-king-iv-plus.webp",
+  "src": "https://www.jacobsen.com/sites/default/files/_images/product_base/product/Greens%20King%20IV%20Product%20Picture.png",
+  "page": "https://www.jacobsen.com/golf-mowers/greens-kingr-iv-plus"
+ },
+ "GP400": {
+  "file": "gp400.webp",
+  "src": "https://www.jacobsen.com/sites/default/files/_images/product_base/product/GP400%20Gas%20Product%20Picture_cc.png",
+  "page": "https://www.jacobsen.com/golf-mowers/gp400"
+ },
+ "SLF530": {
+  "file": "slf530.webp",
+  "src": "https://www.jacobsen.com/sites/default/files/_images/product_base/product/SLF530product.png",
+  "page": "https://www.jacobsen.com/golf-mowers/slf530"
+ },
+ "LF550": {
+  "file": "lf550.webp",
+  "src": "https://www.jacobsen.com/sites/default/files/_images/product_base/product/LF550product.png",
+  "page": "https://www.jacobsen.com/golf-mowers/lf550"
+ },
+ "LF570": {
+  "file": "lf570.webp",
+  "src": "https://www.jacobsen.com/sites/default/files/_images/product_base/product/LF570.png",
+  "page": "https://www.jacobsen.com/golf-mowers/lf570"
+ },
+ "AR321": {
+  "file": "ar321.webp",
+  "src": "https://www.jacobsen.com/sites/default/files/_images/product_base/product/AR321.png",
+  "page": "https://www.jacobsen.com/golf-mowers/ar321"
+ },
+ "AR331": {
+  "file": "ar331.webp",
+  "src": "https://www.jacobsen.com/sites/default/files/_images/product_base/product/AR331.png",
+  "page": "https://www.jacobsen.com/golf-mowers/ar331"
+ },
+ "AR530": {
+  "file": "ar530.webp",
+  "src": "https://www.jacobsen.com/sites/default/files/_images/product_base/product/AR530_AR530%20T4I_RS5070_DU1A0289-hpr_cc_1.png",
+  "page": "https://www.jacobsen.com/golf-mowers/ar530"
+ },
+ "AR730": {
+  "file": "ar730.webp",
+  "src": "https://www.jacobsen.com/sites/default/files/_images/product_base/product/AR530_AR530%20T4I_RS5070_DU1A0289-hpr_cc_1.png",
+  "page": "https://www.jacobsen.com/golf-mowers/ar730"
+ },
+ "TR320": {
+  "file": "tr320.webp",
+  "src": "https://www.jacobsen.com/sites/default/files/_images/product_base/product/TR320.png",
+  "page": "https://www.jacobsen.com/golf-mowers/tr320"
+ },
+ "TR330": {
+  "file": "tr330.webp",
+  "src": "https://www.jacobsen.com/sites/default/files/_images/product_base/product/TR330.png",
+  "page": "https://www.jacobsen.com/golf-mowers/tr330"
+ },
+ "Sand Star I": {
+  "file": "sand-star-i.webp",
+  "src": "https://smithco.com/wp-content/uploads/2025/02/125.png",
+  "page": "https://smithco.com/product/sand-star-i-bunker-rake/"
+ },
+ "Sand Star III": {
+  "file": "sand-star-iii.webp",
+  "src": "https://smithco.com/wp-content/uploads/2024/09/Smithco-Sand-Star-III-1_optimized.webp",
+  "page": "https://smithco.com/product/sand-star-iii-bunker-rake/"
+ },
+ "Sweep Star 48": {
+  "file": "sweep-star-48.webp",
+  "src": "https://smithco.com/wp-content/uploads/2024/09/James-Netz-c-7454-1-1-scaled.webp",
+  "page": "https://smithco.com/product/sweep-star-60-golf-course-sweeper/"
+ },
+ "Sweep Star 60": {
+  "file": "sweep-star-60.webp",
+  "src": "https://smithco.com/wp-content/uploads/2024/09/James-Netz-c-7454-1-1-scaled.webp",
+  "page": "https://smithco.com/product/sweep-star-60-golf-course-sweeper/"
+ },
+ "Sweep Star V-62": {
+  "file": "sweep-star-v-62.webp",
+  "src": "https://smithco.com/wp-content/uploads/2024/11/121-1.png",
+  "page": "https://smithco.com/product/sweep-star-v62-golf-course-sweeper-vac/"
+ },
+ "Spray Star 1100": {
+  "file": "spray-star-1100.webp",
+  "src": "https://smithco.com/wp-content/uploads/2024/11/Smithco-Spray-Star-1110-1024x683.png",
+  "page": "https://smithco.com/product/spray-star-1110-golf-course-sprayer/"
+ },
+ "Spray Star 1200": {
+  "file": "spray-star-1200.webp",
+  "src": "https://smithco.com/wp-content/uploads/2024/09/Smithco-Spray-Star-1200-4_optimized.webp",
+  "page": "https://smithco.com/product/spray-star-1200-golf-course-sprayer/"
+ },
+ "Spray Star 1300": {
+  "file": "spray-star-1300.webp",
+  "src": "https://smithco.com/wp-content/uploads/2024/09/Smithco-Spray-Star-1300-7_optimized.webp",
+  "page": "https://smithco.com/product/spray-star-1300-golf-course-sprayer/"
+ },
+ "Tournament Ultra Lite 7576": {
+  "file": "tournament-ultra-lite-7576.webp",
+  "src": "https://smithco.com/wp-content/uploads/2024/09/Smithco-Greensroller_TournamentUltra7576_optimized-1024x683.webp",
+  "page": "https://smithco.com/product/tournament-ultra-lite-7576-greensroller/"
+ },
+ "Tournament XL 7000": {
+  "file": "tournament-xl-7000.webp",
+  "src": "https://smithco.com/wp-content/uploads/2024/11/tournamentultraxl70-optimized-1024x625.jpg",
+  "page": "https://smithco.com/product/tournament-ultra-xl-7020-greensroller/"
+ },
+ "AER-8": {
+  "file": "aer-8.webp",
+  "src": "https://smithco.com/wp-content/uploads/2024/09/Smithco-Aer8-Cover_optimized.webp",
+  "page": "https://smithco.com/product/aer-8-golf-course-aeration-system/"
+ },
+ "GX560": {
+  "file": "gx560.webp",
+  "src": "https://www.husqvarna.com/-/images/aprimo/husqvarna/walk-behind-mowers/photos/studio/e/eh/eh-529977.jpg?v=3488c6acd152aa71&format=opengraph-cover",
+  "page": "https://www.husqvarna.com/uk/lawn-mowers/gx560/"
+ },
+ "LC353": {
+  "file": "lc353.webp",
+  "src": "https://www.husqvarna.com/-/images/aprimo/husqvarna/walk-behind-mowers/photos/studio/x/xz/xz-332177.jpg?v=e6e5f66ad152aa71&format=opengraph-cover",
+  "page": "https://www.husqvarna.com/uk/lawn-mowers/lc353v/"
+ },
+ "LC356": {
+  "file": "lc356.webp",
+  "src": "https://www.husqvarna.com/-/images/aprimo/husqvarna/walk-behind-mowers/photos/studio/y/yl/yl-914975.jpg?v=c7766e41d152aa71&format=opengraph-cover",
+  "page": "https://www.husqvarna.com/uk/lawn-mowers/lc356v/"
+ },
+ "125B": {
+  "file": "125b.webp",
+  "src": "https://www.husqvarna.com/-/images/aprimo/husqvarna/blowers/photos/studio/h210-0194.jpg?v=9ff7f35dd152aa71&format=opengraph-cover",
+  "page": "https://www.husqvarna.com/ph/leaf-blowers/125b/"
+ },
+ "350BT": {
+  "file": "350bt.webp",
+  "src": "https://www.husqvarna.com/-/images/aprimo/husqvarna/blowers/photos/studio/h210-0244.jpg?v=dba68888d152aa71&format=opengraph-cover",
+  "page": "https://www.husqvarna.com/uk/leaf-blowers/350bt/"
+ },
+ "321S15": {
+  "file": "321s15.webp",
+  "src": "https://www.husqvarna.com/-/images/aprimo/husqvarna/sprayers/photos/studio/h210-0635.jpg?v=e0cfb4ddd152aa71&format=opengraph-cover",
+  "page": "https://www.husqvarna.com/ph/sprayers/321s15/"
+ },
+ "320SM": {
+  "file": "320sm.webp",
+  "src": "https://www.husqvarna.com/-/images/aprimo/husqvarna/sprayers/photos/studio/fu-544592.jpg?v=fb81b98fd152aa71&format=opengraph-cover",
+  "page": "https://www.husqvarna.com/ph/sprayers/320sm20l-manual-sprayer/"
+ },
+ "120 Mark II": {
+  "file": "120-mark-ii.webp",
+  "src": "https://www.husqvarna.com/-/images/aprimo/husqvarna/chainsaws/photos/studio/h/h110/05/h110-0522.jpg?v=19c61be5d152aa71&format=opengraph-cover",
+  "page": "https://www.husqvarna.com/ph/chainsaws/120-mark-ii/"
+ },
+ "140 Mark II": {
+  "file": "140-mark-ii.webp",
+  "src": "https://www.husqvarna.com/-/images/aprimo/husqvarna/chainsaws/photos/studio/h/h110/02/h110-0297.jpg?v=265315a5d152aa71&format=opengraph-cover",
+  "page": "https://www.husqvarna.com/ph/chainsaws/140/"
+ },
+ "143R-II": {
+  "file": "143r-ii.webp",
+  "src": "https://www.husqvarna.com/-/images/aprimo/husqvarna/brushcutters/photos/studio/h210-0739.jpg?v=d94d12c0d152aa71&format=opengraph-cover",
+  "page": "https://www.husqvarna.com/ph/brushcutters/143r-ii/"
+ },
+ "321R": {
+  "file": "321r.webp",
+  "src": "https://www.husqvarna.com/-/images/aprimo/husqvarna/brushcutters/photos/studio/im-100615.jpg?v=5ef6b2dfd152aa71&format=opengraph-cover",
+  "page": "https://www.husqvarna.com/uk/brushcutters/321r/"
+ },
+ "TS 342": {
+  "file": "ts-342.webp",
+  "src": "https://www.husqvarna.com/-/images/aprimo/husqvarna/garden-tractors/photos/studio/h/h310/17/h310-1795.jpg?v=458aa4f2d152aa71&format=opengraph-cover",
+  "page": "https://www.husqvarna.com/ph/garden-tractors/ts342/"
+ },
+ "R216": {
+  "file": "r216.webp",
+  "src": "https://www.husqvarna.com/-/images/aprimo/husqvarna/riders/photos/studio/h310-0696.jpg?v=665e9c64d152aa71&format=opengraph-cover",
+  "page": "https://www.husqvarna.com/ph/ride-on-front-mowers/r216/"
+ },
+ "Air2G2": {
+  "file": "air2g2.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2023/07/air2-3rt3.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/air2g2-air-injection-machine-3/"
+ },
+ "Koro FTM 1.2": {
+  "file": "koro-ftm-1-2.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2017/10/KORO-FTM-Campey-Turf-Care-05.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/koro-ftm-2/"
+ },
+ "Verti-Drain 7316": {
+  "file": "verti-drain-7316.webp",
+  "src": "https://www.redexim.com/wp-content/uploads/2026/03/7316-Verti-Drain-7316_0001.jpg",
+  "page": "https://www.redexim.com/products/verti-drain-7316/"
+ },
+ "Verti-Drain 7416": {
+  "file": "verti-drain-7416.webp",
+  "src": "https://www.redexim.com/wp-content/uploads/2026/03/7416-Verti-Drain-7416_0001.jpg",
+  "page": "https://www.redexim.com/products/verti-drain-7416/"
+ },
+ "Shockwave 210": {
+  "file": "shockwave-210.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2017/10/ShockWave-27.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/imants-shockwave-2/"
+ },
+ "Shockwave 220": {
+  "file": "shockwave-220.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2017/10/ShockWave-27.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/imants-shockwave-2/"
+ },
+ "BM50-1600": {
+  "file": "bm50-1600.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2022/07/Campey_BM50-1.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/bm50-verti-cutter/"
+ },
+ "BM50-1800": {
+  "file": "bm50-1800.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2022/07/Campey_BM50-1.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/bm50-verti-cutter/"
+ },
+ "Rotoblast": {
+  "file": "rotoblast.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2017/10/RotoBlast1.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/rotoblast/"
+ },
+ "Rotoknife": {
+  "file": "rotoknife.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2017/10/Imants-Mini-RotoKnife-2.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/imants-rotoknife-2/"
+ },
+ "Rhea Scarifier": {
+  "file": "rhea-scarifier.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2017/10/Imants-Rotosweep-2-1.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/rotosweep-rhea-scarifier/"
+ },
+ "Sandcat": {
+  "file": "sandcat.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2017/10/2Imants-Sandcat.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/sandcat/"
+ },
+ "Rotosweep": {
+  "file": "rotosweep.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2017/10/Imants-Rotosweep-2-1.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/rotosweep-rhea-scarifier/"
+ },
+ "Root Pruner": {
+  "file": "root-pruner.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2017/10/Imants-Rootpruner-1-1.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/rootpruner/"
+ },
+ "Topdrain 1000": {
+  "file": "topdrain-1000.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2017/10/IMANTS-Topdrain.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/top-drain/"
+ },
+ "Dakota 310": {
+  "file": "dakota-310.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2017/10/Turf-Trailer_3-1.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/dakota-310-sp-2/"
+ },
+ "Dakota 410": {
+  "file": "dakota-410.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2017/10/Dakota2.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/dakota-turf-tender/"
+ },
+ "Dakota 440": {
+  "file": "dakota-440.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2017/10/Dakota2.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/dakota-turf-tender/"
+ },
+ "Dakota Turf Trailer": {
+  "file": "dakota-turf-trailer.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2017/10/156.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/dakota-turf-trailers/"
+ },
+ "Aeraseeder": {
+  "file": "aeraseeder.webp",
+  "src": "https://campeyturfcare.com/wp-content/uploads/2015/11/Aeraseeder_1.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/campey-aeraseeder-2/"
+ },
+ "Line Marker": {
+  "file": "line-marker.webp",
+  "src": "https://campeyturfcare.com/wp/wp-content/uploads/2015/11/LineMarker_1.jpg",
+  "page": "https://campeyturfcare.com/portfolio-items/campey-linemarker/"
+ },
+ "NT542": {
+  "file": "nt542.webp",
+  "src": "https://www.iseki.co.uk/wp-content/uploads/2020/12/DSC_9840-scaled.jpg",
+  "page": "https://www.iseki.co.uk/tm-tractor-range/"
+ },
+ "NT554": {
+  "file": "nt554.webp",
+  "src": "https://www.iseki.co.uk/wp-content/uploads/2020/12/DSC_9840-scaled.jpg",
+  "page": "https://www.iseki.co.uk/tm-tractor-range/"
+ },
+ "SXG324": {
+  "file": "sxg324.webp",
+  "src": "https://www.iseki.co.uk/wp-content/uploads/2023/03/SXG327-cutout-1024x687.png",
+  "page": "https://www.iseki.co.uk/sxg-mower-range/"
+ },
+ "SF237": {
+  "file": "sf237.webp",
+  "src": "https://www.iseki.co.uk/wp-content/uploads/2020/12/SF224-cut-out-1024x916.png",
+  "page": "https://www.iseki.co.uk/sf2-mower-range/"
+ },
+ "SF551": {
+  "file": "sf551.webp",
+  "src": "https://www.iseki.co.uk/wp-content/uploads/2021/05/sf551o-1024x741.png",
+  "page": "https://www.iseki.co.uk/sf5-mower-range/"
+ },
+ "SRA 800": {
+  "file": "sra-800.webp",
+  "src": "https://www.iseki.co.uk/wp-content/uploads/2025/09/DSC06635.jpg",
+  "page": "https://www.iseki.co.uk/sra-mower-range/"
+ },
+ "ET08": {
+  "file": "et08.webp",
+  "src": "https://cdn.mediapool.wackerneusongroup.com/image/491085414967/image_22f5m8nfld6cb0qf44oopo397i/-S1200x1200-FWEBP",
+  "page": "https://www.wackerneuson.com/asean/products/excavators/mini-excavators-up-to-6-t/et08"
+ },
+ "ET66": {
+  "file": "et66.webp",
+  "src": "https://cdn.mediapool.wackerneusongroup.com/image/491085414967/image_07odd0i6qp6hfe3k337k9qnm5a/-S1200x1200-FWEBP",
+  "page": "https://www.wackerneuson.com/asean/products/excavators/tracked-excavators-6-15-t/et66"
+ },
+ "ET75": {
+  "file": "et75.webp",
+  "src": "https://cdn.mediapool.wackerneusongroup.com/image/491085414967/image_5heoki7ih15d1bfr8mi284io2i/-S1200x1200-FWEBP",
+  "page": "https://www.wackerneuson.com/asean/products/excavators/tracked-excavators-6-15-t/et75"
+ },
+ "EZ17": {
+  "file": "ez17.webp",
+  "src": "https://cdn.mediapool.wackerneusongroup.com/image/491085414967/image_4b5q7hd0q53dl3omagmju62i5o/-S1200x1200-FWEBP",
+  "page": "https://www.wackerneuson.com/asean/products/excavators/mini-excavators-up-to-6-t/ez17"
+ },
+ "EZ20": {
+  "file": "ez20.webp",
+  "src": "https://cdn.mediapool.wackerneusongroup.com/image/491085414967/image_cvvabslq0p3sf0hle2lg1e5o1g/-S1200x1200-FWEBP",
+  "page": "https://www.wackerneuson.com/asean/products/excavators/mini-excavators-up-to-6-t/ez20cn"
+ },
+ "EZ28": {
+  "file": "ez28.webp",
+  "src": "https://cdn.mediapool.wackerneusongroup.com/image/491085414967/image_gkh1n8pshd64b5vl9detf7ge7g/-S1200x1200-FWEBP",
+  "page": "https://www.wackerneuson.com/asean/products/excavators/mini-excavators-up-to-6-t/ez28"
+ },
+ "DT10": {
+  "file": "dt10.webp",
+  "src": "https://cdn.mediapool.wackerneusongroup.com/image/491085414967/image_4uepf6h9ip6uh7dtip32gk994k/-S1200x1200-FWEBP",
+  "page": "https://www.wackerneuson.com/us/products/dumpers/track-dumpers/dt10"
+ },
+ "DT15": {
+  "file": "dt15.webp",
+  "src": "https://cdn.mediapool.wackerneusongroup.com/image/491085414967/image_23r8mv8pdt2qpehev3i1nj4h11/-S1200x1200-FWEBP",
+  "page": "https://www.wackerneuson.com/us/products/dumpers/track-dumpers/dt15"
+ },
+ "DW30": {
+  "file": "dw30.webp",
+  "src": "https://cdn.mediapool.wackerneusongroup.com/image/491085414967/image_58c59iknp12bh1q17ibpmggd4t",
+  "page": "https://www.wackerneuson.com/asean/products/dumpers/wheel-dumpers/dw30"
+ },
+ "RD7": {
+  "file": "rd7.webp",
+  "src": "https://cdn.mediapool.wackerneusongroup.com/image/491085414967/image_1i6hsia3h107r0djh96qf1s63o/-S1200x1200-FWEBP",
+  "page": "https://www.wackerneuson.com/asean/products/rollers/rd7"
+ },
+ "BS60": {
+  "file": "bs60.webp",
+  "src": "https://cdn.mediapool.wackerneusongroup.com/image/491085414967/image_ov31g84l0d067air5uuipqar56",
+  "page": "https://www.wackerneuson.com/us/products/vibratory-rammers/4-stroke-rammers/4-stroke-rammers"
+ },
+ "Reversible Vibratory Plate": {
+  "file": "reversible-vibratory-plate.webp",
+  "src": "https://cdn.mediapool.wackerneusongroup.com/image/491085414967/image_vfnpubdrb92ol0tinscr3vd712/-S1200x1200-FWEBP",
+  "page": "https://www.wackerneuson.com/asean/products/vibratory-plates/reversible-vibratory-plates/0-300-kg"
+ },
+ "PT3A": {
+  "file": "pt3a.webp",
+  "src": "https://cdn.mediapool.wackerneusongroup.com/image/491085414967/image_dh5ntg1jst78vc43cm71592h6u/-S1200x1200-FWEBP",
+  "page": "https://www.wackerneuson.com/asean/products/pumps/centrifugal-pumps/pt2a-pt3a"
+ },
+ "PT6YT": {
+  "file": "pt6yt.webp",
+  "src": "https://cdn.mediapool.wackerneusongroup.com/image/491085414967/image_c01d5ib0vp3hv0i6t8o0kae51b/-S1200x1200-FWEBP",
+  "page": "https://www.wackerneuson.com/asean/products/pumps/centrifugal-pumps/pt6"
+ },
+ "Pegasus S5": {
+  "file": "pegasus-s5.webp",
+  "src": "https://trimaxmowers.com/wp-content/uploads/Pegasus-S5_front.webp",
+  "page": "https://trimaxmowers.com/rotary-mowers/pegasus/"
+ },
+ "Procut S5": {
+  "file": "procut-s5.webp",
+  "src": "https://trimaxmowers.com/wp-content/uploads/Procut_S5_front.webp",
+  "page": "https://trimaxmowers.com/rotary-mowers/procut/"
+ },
+ "Striker": {
+  "file": "striker.webp",
+  "src": "https://trimaxmowers.com/wp-content/uploads/Striker_1_front.webp",
+  "page": "https://trimaxmowers.com/rotary-mowers/striker/"
+ },
+ "Snake S3": {
+  "file": "snake-s3.webp",
+  "src": "https://trimaxmowers.com/wp-content/uploads/snake-s3-featured.webp",
+  "page": "https://trimaxmowers.com/rotary-mowers/snake/"
+ },
+ "Warlord S3": {
+  "file": "warlord-s3.webp",
+  "src": "https://trimaxmowers.com/wp-content/uploads/Warlord_S3_front_view.webp",
+  "page": "https://trimaxmowers.com/flail-mowers/warlord/"
+ },
+ "Ezeemow": {
+  "file": "ezeemow.webp",
+  "src": "https://trimaxmowers.com/wp-content/uploads/Ezeemow-FX_front.webp",
+  "page": "https://trimaxmowers.com/flail-mowers/ezeemow-fx/"
+ }
+}

@@ -9,277 +9,577 @@
   <link rel="apple-touch-icon" href="assets/gm-mark.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --green: #037A55;
-      --green-deep: #0B3D2C;
-      --gold: #C9952F;
-      --gold-soft: #F3E6C7;
-      --paper: #F7F5EE;
-      --surface: #FFFFFF;
-      --ink: #17221C;
-      --muted: #5B675F;
-      --line: #E1DDCF;
-      --radius: 14px;
+      /* Tier 1 — raw values. The only place a literal colour appears. */
+      --raw-green-600: #037A55;
+      --raw-green-900: #0B3D2C;
+      --raw-gold-500: #C9952F;
+      --raw-gold-100: #F3E6C7;
+      --raw-ice-50: #F5F7F3;
+      --raw-ice-100: #E4EAE2;
+      --raw-ice-200: #DCE3D9;
+      --raw-ink-950: #0B120E;
+      --raw-ink-900: #0F1A14;
+      --raw-ink-800: #17251D;
+      --raw-ink-700: #26362C;
+      --raw-steel-400: #AEBBB2;
+      --raw-white: #FFFFFF;
+
+      /* Tier 2 — roles */
+      --background: var(--raw-ice-50);
+      --surface: var(--raw-white);
+      --foreground: var(--raw-ink-950);
+      --foreground-muted: rgb(11 18 14 / .5);
+      --contour: var(--raw-ice-100);
+      --line: var(--raw-ice-200);
+      --surface-dark: var(--raw-ink-900);
+      --surface-dark-raised: var(--raw-ink-800);
+      --surface-black: var(--raw-ink-950);
+      --border-on-dark: var(--raw-ink-700);
+      --foreground-on-dark: var(--raw-white);
+      --foreground-on-dark-muted: var(--raw-steel-400);
+      --foreground-on-dark-faint: rgb(255 255 255 / .4);
+      --accent: var(--raw-green-600);          /* accent on light ground */
+      --accent-on-dark: var(--raw-gold-500);   /* accent on dark ground */
+      --accent-soft: var(--raw-gold-100);
+      --green-deep: var(--raw-green-900);
+
+      --font-sans: "Space Grotesk", system-ui, sans-serif;
+      --font-display: "Oswald", Impact, sans-serif;
+      --ease-entrance: cubic-bezier(0.2, 0, 0, 1);
+      --ease-plate: cubic-bezier(0.33, 0, 0, 1);
+      --gutter: clamp(16px, 2.2vw, 32px);
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { -webkit-text-size-adjust: 100%; }
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    html.locked { overflow: hidden; }
     body {
-      margin: 0;
-      font-family: "Archivo", system-ui, sans-serif;
-      background: var(--paper);
-      color: var(--ink);
-      line-height: 1.55;
+      margin: 0; min-height: 100lvh;
+      font-family: var(--font-sans);
+      background: var(--background); color: var(--foreground);
+      line-height: 1.5;
     }
     img { max-width: 100%; display: block; }
     a { color: inherit; }
-    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+    .wrap { max-width: 1320px; margin: 0 auto; padding: 0 var(--gutter); }
+    .up { text-transform: uppercase; line-height: .9; }
 
-    /* Header */
-    header {
-      position: sticky; top: 0; z-index: 20;
-      background: rgba(255,255,255,.94);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .brand img { height: 40px; width: auto; }
-    .brand span { font-weight: 800; font-stretch: 112%; letter-spacing: .02em; color: var(--green-deep); }
-    .brand span b { color: var(--gold); font-weight: 800; }
-    nav ul { list-style: none; display: flex; gap: 26px; margin: 0; padding: 0; }
-    nav a { text-decoration: none; font-weight: 600; font-size: 15px; color: var(--muted); }
-    nav a:hover { color: var(--green); }
-    .quote-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--green); color: #fff; border: 0; border-radius: 999px;
-      padding: 10px 18px; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; text-decoration: none;
-    }
-    .quote-btn:hover { background: var(--green-deep); }
-    .quote-count {
-      background: var(--gold); color: var(--green-deep); border-radius: 999px;
-      min-width: 22px; height: 22px; display: inline-grid; place-items: center; font-size: 12px; padding: 0 6px;
-    }
+    /* Display type */
+    .display { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; line-height: .95; margin: 0; letter-spacing: -.005em; }
+    .eyebrow { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: -.02em; line-height: .9; color: var(--accent); margin: 0; }
+    .on-dark .eyebrow { color: var(--accent-on-dark); }
 
-    /* Hero */
-    .hero {
+    /* Text engine: each unit is an inline-block span driven by a spring. No overflow clip. */
+    [data-split] { display: flex; flex-wrap: wrap; column-gap: .25em; }
+    [data-split="letters"] { column-gap: 0; }
+    .u { display: inline-block; will-change: transform, opacity; }
+    .u.em { color: var(--accent); }
+    .js [data-rise], .js .u { opacity: 0; }
+
+    /* Bracket panel: four 10px corner strokes, no border, no fill */
+    .bracket {
+      --b: currentColor; position: relative;
       background:
-        radial-gradient(1200px 500px at 85% -10%, rgba(201,149,47,.25), transparent 60%),
-        linear-gradient(160deg, var(--green-deep), var(--green));
-      color: #fff;
-      padding: 84px 0 96px;
-      overflow: hidden;
+        linear-gradient(var(--b), var(--b)) 0 0 / 10px 1px, linear-gradient(var(--b), var(--b)) 0 0 / 1px 10px,
+        linear-gradient(var(--b), var(--b)) 100% 0 / 10px 1px, linear-gradient(var(--b), var(--b)) 100% 0 / 1px 10px,
+        linear-gradient(var(--b), var(--b)) 0 100% / 10px 1px, linear-gradient(var(--b), var(--b)) 0 100% / 1px 10px,
+        linear-gradient(var(--b), var(--b)) 100% 100% / 10px 1px, linear-gradient(var(--b), var(--b)) 100% 100% / 1px 10px;
+      background-repeat: no-repeat;
     }
-    .hero-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 48px; align-items: center; }
-    .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: 13px; font-weight: 700; color: var(--gold); margin: 0 0 14px; }
-    .hero h1 { font-size: clamp(36px, 6vw, 64px); line-height: 1.02; font-stretch: 115%; font-weight: 900; margin: 0 0 18px; }
-    .hero h1 em { font-style: normal; color: var(--gold); }
-    .hero p.lead { font-size: 19px; max-width: 560px; color: rgba(255,255,255,.86); margin: 0 0 30px; }
-    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
-    .btn-gold {
-      background: var(--gold); color: var(--green-deep); text-decoration: none; font-weight: 800;
-      padding: 14px 24px; border-radius: 999px;
-    }
-    .btn-ghost {
-      border: 1.5px solid rgba(255,255,255,.55); color: #fff; text-decoration: none; font-weight: 700;
-      padding: 13px 22px; border-radius: 999px;
-    }
-    .hero-card {
-      background: #fff; border-radius: 22px; padding: 28px; box-shadow: 0 30px 60px rgba(0,0,0,.25);
-    }
-    .hero-card img { width: 100%; }
-    .peso-badge {
-      margin-top: 18px; display: flex; align-items: center; gap: 12px;
-      background: var(--gold-soft); border-radius: 12px; padding: 12px 14px; color: var(--green-deep); font-size: 14px;
-    }
-    .peso-badge strong { font-size: 28px; line-height: 1; color: var(--gold); }
 
-    /* Stats strip */
-    .stats { background: var(--surface); border-bottom: 1px solid var(--line); }
-    .stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
-    .stat { padding: 26px 20px; border-left: 1px solid var(--line); }
-    .stat:first-child { border-left: 0; }
-    .stat b { display: block; font-size: 30px; font-stretch: 112%; color: var(--green); }
-    .stat span { color: var(--muted); font-size: 14px; }
+    /* Chamfered CTA with a flood on hover */
+    .cta {
+      --chamfer: 10px; position: relative; isolation: isolate;
+      display: inline-flex; align-items: center; justify-content: center; gap: 1.2em;
+      min-height: 52px; padding: 0 28px; border: 0; cursor: pointer;
+      font: inherit; font-size: 16px; font-weight: 500; text-transform: uppercase; line-height: .9; text-decoration: none;
+      color: var(--accent-on-dark); background: var(--surface-dark);
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--chamfer)), calc(100% - var(--chamfer)) 100%, 0 100%);
+      transition: color 250ms var(--ease-plate);
+    }
+    .cta::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; background: var(--accent-on-dark);
+      transform: scaleX(0); transform-origin: left; transition: transform 250ms var(--ease-plate);
+    }
+    .cta::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      box-shadow: inset 0 0 0 1px rgb(201 149 47 / .3);
+    }
+    .cta:hover, .cta:focus-visible { color: var(--surface-black); }
+    .cta:hover::before, .cta:focus-visible::before { transform: scaleX(1); }
+    .cta svg { width: .8em; height: .62em; transition: transform 150ms var(--ease-entrance); }
+    .cta:hover svg { transform: translateX(4px); }
+    .cta.light { background: var(--accent-on-dark); color: var(--surface-black); }
+    .cta.light::before { background: var(--foreground-on-dark); }
 
-    section { padding: 80px 0; }
-    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 34px; flex-wrap: wrap; }
-    .section-head h2 { font-size: clamp(28px, 4vw, 40px); font-stretch: 112%; margin: 0; line-height: 1.1; color: var(--green-deep); }
-    .section-head p { margin: 6px 0 0; color: var(--muted); max-width: 560px; }
+    .tlink { font-size: 14px; font-weight: 500; text-transform: uppercase; line-height: .9; text-decoration: none; color: var(--foreground); transition: color 150ms var(--ease-entrance); background: none; border: 0; padding: 0; font-family: inherit; cursor: pointer; }
+    .tlink:hover { color: var(--accent); }
+    .on-dark .tlink { color: var(--foreground-on-dark); }
+    .on-dark .tlink:hover { color: var(--accent-on-dark); }
 
-    /* Brands */
-    .brands { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+    /* Stepped-corner photo plate */
+    .plate { --step: 22px; margin: 0; overflow: hidden; clip-path: polygon(var(--step) 0, 100% 0, 100% calc(100% - var(--step)), calc(100% - var(--step)) 100%, 0 100%, 0 var(--step)); }
+    .plate img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── Masthead ─────────────────────────────────────────────── */
+    .masthead {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+      transition: background-color 250ms var(--ease-entrance), box-shadow 250ms var(--ease-entrance);
+    }
+    .masthead.solid { background: rgb(245 247 243 / .92); backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line); }
+    .masthead .bar { position: relative; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; position: relative; z-index: 1; }
+    .brand img { height: 34px; width: auto; }
+    .brand span { font-family: var(--font-display); font-weight: 700; font-size: 19px; letter-spacing: .02em; color: var(--green-deep); }
+    .brand span b { color: var(--raw-gold-500); font-weight: 700; }
+    .mast-nav { position: absolute; left: 50%; transform: translateX(-50%); }
+    .mast-nav ul { list-style: none; display: flex; gap: clamp(24px, 3.4vw, 56px); margin: 0; padding: 0; }
+    .mast-nav a { font-size: 14px; text-transform: uppercase; line-height: .9; text-decoration: none; color: var(--foreground); transition: color 150ms var(--ease-entrance); white-space: nowrap; }
+    .mast-nav a:hover { color: var(--accent); }
+    .quote-link { font: inherit; font-size: 15px; font-weight: 700; text-transform: uppercase; line-height: .9; background: none; border: 0; cursor: pointer; color: var(--foreground); padding: 8px 0; transition: color 150ms var(--ease-entrance); white-space: nowrap; }
+    .quote-link:hover { color: var(--accent); }
+    .quote-count { color: var(--accent); }
+    .burger { display: none; background: none; border: 0; padding: 8px; margin-right: -8px; cursor: pointer; }
+    .burger i { display: block; width: 24px; height: 1px; background: var(--foreground); }
+    .burger i + i { margin-top: 5px; }
+    .mast-right { display: flex; align-items: center; gap: 18px; position: relative; z-index: 1; }
+
+    .sheet { position: fixed; inset: 0; z-index: 60; background: var(--background); padding: 18px var(--gutter) 32px; display: none; flex-direction: column; opacity: 0; }
+    .sheet.open { display: flex; }
+    .sheet-top { display: flex; justify-content: space-between; align-items: center; height: 50px; }
+    .sheet-close { position: relative; width: 40px; height: 40px; background: none; border: 0; cursor: pointer; }
+    .sheet-close i { position: absolute; left: 8px; top: 50%; width: 24px; height: 1px; background: var(--foreground); }
+    .sheet-close i:first-child { transform: rotate(45deg); }
+    .sheet-close i:last-child { transform: rotate(-45deg); }
+    .sheet nav { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+    .sheet nav a { font-family: var(--font-display); font-weight: 700; font-size: clamp(38px, 9vw, 52px); text-transform: uppercase; line-height: .95; text-decoration: none; color: var(--foreground); opacity: 0; }
+    .sheet nav a:hover { color: var(--accent); }
+
+    /* ── Loading veil ────────────────────────────────────────── */
+    .veil { position: fixed; inset: 0; z-index: 80; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--background); }
+    .veil-content { display: flex; flex-direction: column; align-items: center; }
+    .veil-mark { position: relative; width: 92px; height: 96px; -webkit-mask: url(assets/gm-mark.png) center / contain no-repeat; mask: url(assets/gm-mark.png) center / contain no-repeat; }
+    .veil-mark .shell, .veil-mark .fill { position: absolute; inset: 0; background: var(--green-deep); }
+    .veil-mark .shell { opacity: .12; }
+    .veil-mark .fill { transform-origin: top; transform: scaleY(0); }
+    .veil-name { margin: 28px 0 0; font-size: 16px; text-transform: uppercase; line-height: .9; letter-spacing: .18em; opacity: 0; }
+    .veil-meter { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--line); }
+    .veil-meter i { position: absolute; inset: 0; background: var(--green-deep); transform-origin: left; transform: scaleX(0); }
+    .no-js .veil { display: none; }
+
+    /* ── Sticky stack ────────────────────────────────────────── */
+    .stack { position: relative; background: var(--surface-black); }
+    .layer { position: relative; }
+    .layer-inner { transform-origin: center; }
+    .shade { position: absolute; inset: 0; background: var(--surface-black); opacity: 0; pointer-events: none; }
+    @media (min-width: 1024px) and (min-height: 700px) {
+      .layer.pin { position: sticky; top: 0; }
+      .layer.pin:nth-child(1) { z-index: 0; }
+      .layer.pin:nth-child(2) { z-index: 10; }
+      .layer.last { z-index: 20; }
+    }
+
+    /* Contour canvases */
+    .contours { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+
+    /* ── 1 · Hero ────────────────────────────────────────────── */
+    .hero { position: relative; isolation: isolate; min-height: 100lvh; overflow: hidden; background: var(--background); display: flex; flex-direction: column; padding: 96px 0 28px; }
+    .hero > .wrap { position: relative; z-index: 1; width: 100%; }
+    .hero-grid { flex: 1; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr) 236px; gap: clamp(24px, 3vw, 48px); align-items: center; }
+    .hero-id .id-tag { font-size: 14px; text-transform: uppercase; line-height: .9; color: var(--foreground-muted); margin: 0 0 18px; }
+    .hero h1 { font-size: clamp(52px, 6.4vw, 104px); max-width: 7.4em; }
+    .meta { list-style: none; margin: 34px 0 0; padding: 0; display: grid; gap: 14px; }
+    .meta li { display: flex; align-items: center; gap: 10px; font-size: 17px; text-transform: uppercase; line-height: .9; }
+    .meta svg { flex: none; }
+    .hero-photo { --step: 30px; aspect-ratio: 4 / 5; max-height: 72vh; width: 100%; will-change: transform; }
+    .hero-photo img { transform: scale(1.08); }
+    .hero-panels { display: flex; flex-direction: column; gap: 28px; }
+    .panel { padding: 16px; }
+    .panel dl { margin: 16px 0 0; font-size: 14px; text-transform: uppercase; line-height: .9; display: grid; gap: 7px; }
+    .panel dt { font-weight: 700; }
+    .panel dd { margin: 0; }
+    .panel .thumb { margin-top: 18px; height: 92px; width: 100%; object-fit: contain; object-position: left center; mix-blend-mode: multiply; }
+    .stats-dl { grid-template-columns: repeat(3, 1fr) !important; gap: 12px !important; margin-top: 22px !important; }
+    .stats-dl > div { display: flex; flex-direction: column-reverse; gap: 10px; }
+    .stats-dl dt { font-size: 12px; font-weight: 400; letter-spacing: -.04em; white-space: nowrap; }
+    .stats-dl dd { font-family: var(--font-display); font-weight: 500; font-size: 38px; line-height: .72; letter-spacing: -.04em; }
+    .hero-foot { margin-top: 28px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 32px; }
+    .hero-foot .lead { margin: 0; max-width: 470px; font-size: 15px; color: var(--foreground-muted); color: rgb(11 18 14 / .7); }
+    .hero-foot .right { display: flex; justify-content: flex-end; gap: 36px; }
+
+    /* ── 2 · Brands (dark) ───────────────────────────────────── */
+    .brands-sec { position: relative; min-height: 100lvh; background: var(--surface-dark); color: var(--foreground-on-dark); overflow: hidden; display: flex; flex-direction: column; justify-content: center; padding: 150px 0 90px; }
+    .seam { position: absolute; left: 0; right: 0; top: 0; height: 168px; width: 100%; pointer-events: none; z-index: 1; }
+    .brands-sec .wrap { position: relative; z-index: 2; width: 100%; }
+    .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+    .sec-head h2 { font-size: clamp(40px, 4.6vw, 64px); }
+    .sec-head p { margin: 14px 0 0; max-width: 520px; font-size: 15px; }
+    .on-dark .sec-head p { color: var(--foreground-on-dark-muted); }
+    .brands { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border-on-dark); border: 1px solid var(--border-on-dark); }
     .brand-card {
-      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-      padding: 22px; cursor: pointer; text-align: left; font: inherit; color: inherit;
-      transition: border-color .15s, transform .15s;
+      position: relative; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 0;
+      background: var(--surface-dark); padding: 26px 24px 24px; min-height: 196px; display: flex; flex-direction: column;
+      transition: background-color 250ms var(--ease-plate);
     }
-    .brand-card:hover { border-color: var(--green); transform: translateY(-2px); }
-    .brand-card h3 { margin: 0 0 4px; font-size: 22px; font-stretch: 112%; color: var(--green-deep); }
-    .brand-card .tag { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--gold); font-weight: 700; }
-    .brand-card p { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
+    .brand-card:hover, .brand-card:focus-visible { background: var(--surface-dark-raised); }
+    .brand-card .tag { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: -.02em; line-height: .9; color: var(--accent-on-dark); }
+    .brand-card h3 { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: 30px; line-height: .95; margin: 14px 0 0; }
+    .brand-card p { margin: 12px 0 0; font-size: 14px; color: var(--foreground-on-dark-muted); flex: 1; }
+    .brand-card .n { margin-top: 18px; font-size: 13px; font-weight: 500; text-transform: uppercase; line-height: .9; color: var(--foreground-on-dark); }
+    .brand-card .n span { color: var(--accent-on-dark); transition: margin 150ms var(--ease-entrance); }
+    .brand-card:hover .n span { margin-left: 4px; }
+    .brand-card.coverage { background: var(--accent-on-dark); color: var(--surface-black); cursor: default; }
+    .brand-card.coverage .tag, .brand-card.coverage p { color: rgb(11 18 14 / .7); }
 
-    /* Catalog */
-    #catalog { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-    .chip {
-      border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 8px 14px;
-      font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--muted);
-    }
-    .chip[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: #fff; }
+    /* ── 3 · Field timeline (dark) ───────────────────────────── */
+    .tl-sec { position: relative; background: var(--surface-black); color: var(--foreground-on-dark); padding: 120px 0 120px; }
+    .tl { position: relative; margin-top: 40px; }
+    .rail { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgb(255 255 255 / .2); }
+    .rail .thread { position: absolute; left: 0; top: 0; width: 1px; height: 100%; background: var(--foreground-on-dark); transform-origin: top; transform: scaleY(0); }
+    .rail .marker { position: absolute; left: -6px; top: 0; width: 13px; height: 13px; border: 1px solid var(--accent-on-dark); background: var(--surface-black); }
+    .row { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 0 96px; align-items: center; padding: 36px 0; transition: opacity 250ms var(--ease-entrance); }
+    .tl:hover .row:not(:hover) { opacity: .35; }
+    .row .plate { --step: 26px; aspect-ratio: 3 / 2; outline: 1px solid #535450; background: rgb(255 255 255 / .1); will-change: transform; }
+    .row .copy { will-change: transform; }
+    .row:nth-child(odd) .copy { order: 2; }
+    .row:nth-child(even) .plate { order: 2; }
+    .row .num { font-family: var(--font-display); font-weight: 700; font-size: 36px; line-height: .9; color: var(--accent-on-dark); }
+    .row h3 { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: clamp(30px, 3vw, 44px); line-height: .95; margin: 18px 0 0; }
+    .row p { margin: 14px 0 22px; max-width: 420px; font-size: 15px; color: var(--foreground-on-dark-muted); }
+
+    /* ── 4 · Catalog (light) ─────────────────────────────────── */
+    .sec { padding: 110px 0; position: relative; }
+    #catalog { background: var(--background); position: relative; z-index: 21; }
     .search {
-      width: 100%; max-width: 340px; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--line);
-      font: inherit; background: var(--paper);
+      width: 100%; max-width: 340px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 0;
+      font: inherit; font-size: 14px; background: var(--surface); color: var(--foreground);
     }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
-    .product {
-      border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; display: flex; flex-direction: column;
-      background: var(--paper);
-    }
-    .product .pb { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; color: var(--gold); }
-    .product h4 { margin: 4px 0 2px; font-size: 19px; font-stretch: 108%; color: var(--green-deep); }
-    .product .cat { color: var(--muted); font-size: 14px; flex: 1; }
-    .product .price { margin: 14px 0 12px; font-weight: 800; font-size: 20px; color: var(--ink); }
-    .product .price small { display: block; font-weight: 500; font-size: 12px; color: var(--muted); }
+    .search:focus { outline: 1px solid var(--accent); outline-offset: 0; }
+    .filters { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-bottom: 26px; }
+    .chip { border: 0; background: none; padding: 8px 0; font: inherit; font-size: 14px; font-weight: 500; text-transform: uppercase; line-height: .9; cursor: pointer; color: var(--foreground-muted); transition: color 150ms var(--ease-entrance); }
+    .chip:hover { color: var(--foreground); }
+    .chip[aria-pressed="true"] { color: var(--accent); font-weight: 700; }
+    .chip[aria-pressed="true"]::before { content: "[ "; }
+    .chip[aria-pressed="true"]::after { content: " ]"; }
+    /* Hairlines live on the cells, so an unfinished last row leaves clean ground rather than a grey block. */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .product { background: var(--surface); padding: 18px 18px 20px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; transition: background-color 250ms var(--ease-plate); }
+    .product:hover { background: #FBFCFA; }
+    .product .pimg { margin: -18px -18px 16px; background: #fff; border-bottom: 1px solid var(--line); }
+    .product .pimg img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: contain; }
+    .product .pb { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: -.02em; line-height: .9; color: var(--raw-gold-500); }
+    .product h4 { margin: 10px 0 0; font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: 24px; line-height: .95; color: var(--foreground); }
+    .product .cat { margin-top: 8px; font-size: 12px; font-weight: 500; text-transform: uppercase; line-height: .9; color: var(--accent); }
+    .product .desc { margin: 12px 0 18px; color: rgb(11 18 14 / .65); font-size: 14px; line-height: 1.5; flex: 1; }
     .add {
-      border: 1.5px solid var(--green); background: transparent; color: var(--green);
-      border-radius: 999px; padding: 9px 12px; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer;
+      --chamfer: 8px; border: 0; background: var(--background); color: var(--foreground); cursor: pointer;
+      padding: 13px 12px; font: inherit; font-weight: 500; font-size: 13px; text-transform: uppercase; line-height: .9;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--chamfer)), calc(100% - var(--chamfer)) 100%, 0 100%);
+      box-shadow: inset 0 0 0 1px var(--line); transition: background-color 250ms var(--ease-plate), color 250ms var(--ease-plate);
     }
-    .add.added { background: var(--green); color: #fff; }
-    .empty { color: var(--muted); padding: 30px 0; }
-    .price-note { margin-top: 22px; font-size: 13px; color: var(--muted); }
+    .add:hover { background: var(--surface-dark); color: var(--accent-on-dark); }
+    .add.added { background: var(--accent); color: #fff; box-shadow: none; }
+    .empty { grid-column: 1 / -1; color: var(--foreground-muted); padding: 30px 18px; background: var(--surface); margin: 0; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .price-note { margin-top: 22px; font-size: 13px; color: var(--foreground-muted); max-width: 820px; }
 
-    /* Services */
-    .services { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
-    .service { background: var(--surface); border-radius: var(--radius); padding: 24px; border-top: 4px solid var(--gold); }
-    .service h3 { margin: 0 0 8px; color: var(--green-deep); font-stretch: 108%; }
-    .service p { margin: 0; color: var(--muted); font-size: 15px; }
+    /* ── 5 · Services ────────────────────────────────────────── */
+    #services { border-top: 1px solid var(--line); }
+    .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    .service { padding: 22px 20px 24px; }
+    .service .eyebrow { color: var(--raw-gold-500); }
+    .service h3 { margin: 16px 0 10px; font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: 24px; line-height: .95; }
+    .service p { margin: 0; color: rgb(11 18 14 / .65); font-size: 14px; }
 
-    /* Calculator */
-    .calc { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; background: var(--green-deep); color: #fff; border-radius: 22px; padding: 34px; }
-    .calc h2 { color: #fff; }
-    .calc label { display: block; font-size: 14px; font-weight: 600; margin: 14px 0 6px; color: rgba(255,255,255,.8); }
-    .calc input, .calc select {
-      width: 100%; padding: 12px 14px; border-radius: 10px; border: 0; font: inherit; font-size: 16px;
-    }
-    .calc-out { background: rgba(255,255,255,.08); border-radius: 16px; padding: 24px; align-self: stretch; }
-    .calc-out dl { margin: 0; display: grid; grid-template-columns: 1fr auto; gap: 10px 16px; }
-    .calc-out dt { color: rgba(255,255,255,.75); }
-    .calc-out dd { margin: 0; font-weight: 700; text-align: right; }
-    .calc-out .big { font-size: 30px; color: var(--gold); }
+    /* ── 6 · Calculator ──────────────────────────────────────── */
+    #calculator { padding-top: 0; }
+    .calc { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; background: var(--surface-dark); color: var(--foreground-on-dark); padding: 40px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%); }
+    .calc h2 { font-size: clamp(34px, 3.6vw, 52px); margin-top: 16px; }
+    .calc label { display: block; font-size: 12px; font-weight: 500; text-transform: uppercase; line-height: .9; margin: 28px 0 10px; color: var(--foreground-on-dark-muted); }
+    .calc input { width: 100%; padding: 16px 18px; border: 0; border-radius: 0; font: inherit; font-size: 20px; font-weight: 500; background: var(--background); color: var(--foreground); }
+    .calc .terms { font-size: 14px; color: var(--foreground-on-dark-muted); margin: 16px 0 0; max-width: 440px; }
+    .calc-out { padding: 26px 26px 24px; color: var(--foreground-on-dark); --b: var(--accent-on-dark); background-color: rgb(255 255 255 / .04); }
+    .calc-out dl { margin: 0; display: grid; grid-template-columns: 1fr auto; gap: 20px 16px; align-items: center; }
+    .calc-out dt { font-size: 14px; text-transform: uppercase; line-height: .9; }
+    .calc-out dt small { display: block; margin-top: 8px; font-size: 12px; text-transform: none; color: var(--foreground-on-dark-faint); line-height: 1.2; }
+    .calc-out dd { margin: 0; text-align: right; font-family: var(--font-display); font-weight: 500; font-size: 22px; line-height: .9; letter-spacing: -.02em; }
+    .calc-out .big { font-size: clamp(30px, 3vw, 42px); color: var(--accent-on-dark); }
+    .calc-out .fine { font-size: 13px; color: var(--foreground-on-dark-faint); margin: 24px 0 0; }
 
-    /* Quote drawer */
-    .drawer-bg { position: fixed; inset: 0; background: rgba(0,0,0,.4); display: none; z-index: 40; }
+    /* ── 7 · Sign-off (contact + footer) ─────────────────────── */
+    .signoff { background: var(--accent-on-dark); padding: 16px; position: relative; z-index: 21; }
+    .signoff-panel { position: relative; overflow: hidden; background: var(--surface-dark); color: var(--foreground-on-dark); padding: 96px 0 28px; }
+    .signoff-panel > .wrap { position: relative; z-index: 1; }
+    .signoff h2 { font-size: clamp(52px, 8vw, 128px); max-width: 9em; }
+    .signoff-cols { margin-top: 64px; display: grid; grid-template-columns: 1.2fr 1fr 1fr auto; gap: 32px; align-items: start; }
+    .signoff-cols h3 { margin: 0 0 16px; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: -.02em; line-height: .9; color: var(--accent-on-dark); }
+    .signoff-cols p { margin: 0 0 8px; font-size: 15px; color: var(--foreground-on-dark-muted); }
+    .signoff-cols a { text-decoration: none; }
+    .signoff-cols a:hover { color: var(--accent-on-dark); }
+    .foot-nav { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+    .foot-nav a { font-family: var(--font-display); font-weight: 500; font-size: 24px; text-transform: uppercase; line-height: .95; color: var(--foreground-on-dark); transition: color 150ms var(--ease-entrance); }
+    .legal { margin-top: 80px; padding-top: 22px; border-top: 1px solid var(--border-on-dark); display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; font-size: 12px; color: var(--foreground-on-dark-faint); }
+    .legal img { height: 64px; width: auto; background: #fff; padding: 6px 10px; }
+    .credits { margin: 0; max-width: 760px; line-height: 1.6; }
+    .credits a { color: inherit; }
+
+    /* ── Quote drawer ────────────────────────────────────────── */
+    .drawer-bg { position: fixed; inset: 0; background: rgb(11 18 14 / .45); display: none; z-index: 70; }
     .drawer {
-      position: fixed; top: 0; right: 0; height: 100%; width: min(440px, 100%); background: #fff; z-index: 50;
-      transform: translateX(100%); transition: transform .25s; display: flex; flex-direction: column;
+      position: fixed; top: 0; right: 0; height: 100%; width: min(460px, 100%); background: var(--background); z-index: 71;
+      transform: translateX(100%); transition: transform 250ms var(--ease-plate); display: flex; flex-direction: column;
     }
     .drawer.open { transform: none; }
     .drawer-bg.open { display: block; }
-    .drawer header { position: static; display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; }
-    .drawer header h3 { margin: 0; color: var(--green-deep); }
-    .x { border: 0; background: none; font-size: 26px; cursor: pointer; color: var(--muted); }
-    .drawer-body { flex: 1; overflow: auto; padding: 16px 20px; }
-    .line { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
-    .line small { color: var(--muted); display: block; }
-    .qty { width: 56px; padding: 6px; border-radius: 8px; border: 1px solid var(--line); font: inherit; }
-    .rm { border: 0; background: none; color: #B0492F; cursor: pointer; font-size: 13px; }
-    .totals { padding: 16px 20px; border-top: 1px solid var(--line); background: var(--paper); }
-    .totals div { display: flex; justify-content: space-between; margin: 4px 0; }
-    .totals .grand { font-size: 20px; font-weight: 800; color: var(--green-deep); }
-    .form { display: grid; gap: 8px; margin-top: 12px; }
-    .form input, .form textarea { padding: 10px 12px; border-radius: 8px; border: 1px solid var(--line); font: inherit; }
+    .drawer-head { display: flex; justify-content: space-between; align-items: center; padding: 22px 22px 16px; border-bottom: 1px solid var(--line); }
+    .drawer-head h3 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 28px; text-transform: uppercase; line-height: .95; }
+    .x { border: 0; background: none; font-size: 28px; line-height: 1; cursor: pointer; color: var(--foreground); }
+    .drawer-body { flex: 1; overflow: auto; padding: 8px 22px; }
+    .line { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .line strong { font-family: var(--font-display); font-weight: 500; text-transform: uppercase; font-size: 17px; line-height: 1; }
+    .line small { color: var(--foreground-muted); display: block; margin-top: 4px; }
+    .qty { width: 58px; padding: 8px; border: 1px solid var(--line); font: inherit; background: var(--surface); }
+    .rm { border: 0; background: none; color: #B0492F; cursor: pointer; font: inherit; font-size: 12px; text-transform: uppercase; }
+    .totals { padding: 18px 22px 22px; border-top: 1px solid var(--line); background: var(--surface); }
+    .totals > div { display: flex; justify-content: space-between; margin: 4px 0; font-size: 14px; }
+    .totals .grand { font-family: var(--font-display); font-size: 22px; font-weight: 500; text-transform: uppercase; margin-top: 8px; }
+    .form { display: grid; gap: 8px; margin-top: 14px; }
+    .form input, .form textarea { padding: 11px 12px; border: 1px solid var(--line); border-radius: 0; font: inherit; font-size: 14px; background: var(--background); }
+    .form .cta { width: 100%; margin-top: 4px; }
 
-    /* Contact + footer */
-    .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .contact-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
-    .contact-card h3 { margin: 0 0 10px; color: var(--green-deep); }
-    .contact-card p { margin: 6px 0; color: var(--muted); }
-    footer { background: var(--green-deep); color: rgba(255,255,255,.75); padding: 40px 0; font-size: 14px; }
-    footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
-    footer img { height: 54px; width: auto; background: #fff; border-radius: 10px; padding: 6px 10px; }
-
-    @media (max-width: 880px) {
-      nav ul { display: none; }
-      .hero { padding: 56px 0 64px; }
-      .hero-grid, .calc, .contact { grid-template-columns: 1fr; }
-      .hero-card { max-width: 380px; }
-      .stats .wrap { grid-template-columns: repeat(2, 1fr); }
-      .stat:nth-child(3) { border-left: 0; }
-      .stat { border-top: 1px solid var(--line); }
-      section { padding: 56px 0; }
-      .calc { padding: 22px; }
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 1279px) {
+      .mast-nav { display: none; }
+      .burger { display: block; }
+      .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); }
+      .hero-panels { grid-column: 1 / -1; flex-direction: row; }
+      .hero-panels .panel { flex: 1; }
+      .brands { grid-template-columns: repeat(2, 1fr); }
+      .services { grid-template-columns: repeat(2, 1fr); }
+      .signoff-cols { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 420px) {
+    @media (max-width: 1023px) {
+      .hero { padding-top: 88px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero-photo { aspect-ratio: 16 / 11; max-height: none; }
+      .hero-foot { grid-template-columns: 1fr; gap: 18px; align-items: start; }
+      .hero-foot .right { justify-content: flex-start; }
+      .brands-sec { padding: 140px 0 72px; }
+      .row { grid-template-columns: 1fr; gap: 22px; padding: 28px 0 28px 36px; }
+      .row:nth-child(odd) .copy, .row:nth-child(even) .plate { order: 0; }
+      .rail { left: 6px; }
+      .calc { grid-template-columns: 1fr; padding: 26px; }
+      .sec { padding: 80px 0; }
+      .tl-sec { padding: 88px 0; }
+    }
+    @media (max-width: 639px) {
       .brand span { display: none; }
+      .quote-link .ql { display: none; }
+      .hero h1 { font-size: clamp(44px, 13vw, 70px); }
+      .meta li { font-size: 15px; }
+      .hero-panels { flex-direction: column; }
+      .brands { grid-template-columns: 1fr; }
+      .brand-card { min-height: 0; }
+      .services { grid-template-columns: 1fr; gap: 16px; }
+      .signoff { padding: 8px; }
+      .signoff-panel { padding-top: 72px; }
+      .signoff-cols { grid-template-columns: 1fr; gap: 28px; margin-top: 44px; }
+      .legal { margin-top: 48px; }
+      .search { max-width: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .js [data-rise], .js .u { opacity: 1 !important; transform: none !important; }
     }
   </style>
+  <script>
+    document.documentElement.classList.add("js"); history.scrollRestoration = "manual"; window.scrollTo(0, 0);
+    // If the motion script never starts (old browser, blocked CDN), show the page as plain content.
+    setTimeout(() => {
+      if (window.__motion) return;
+      document.documentElement.classList.remove("js");
+      document.getElementById("veil")?.remove();
+    }, 6000);
+  </script>
 </head>
 <body>
 
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="#top"><img src="assets/gm-mark.png" alt="" /><span>GROUND<b>MASTERS</b>.PH</span></a>
-    <nav aria-label="Main">
+<div class="veil" id="veil" role="status" aria-label="Loading Groundmasters.ph">
+  <div class="veil-content" id="veilContent">
+    <div class="veil-mark"><div class="shell"></div><div class="fill" id="veilFill"></div></div>
+    <p class="veil-name" id="veilName">groundmasters.ph</p>
+  </div>
+  <div class="veil-meter" id="veilMeter"><i id="veilBar"></i></div>
+</div>
+
+<header class="masthead" id="masthead" data-rise data-delay="0">
+  <div class="wrap bar">
+    <a class="brand" href="#top" data-scroll><img src="assets/gm-mark.png" alt="" /><span>GROUND<b>MASTERS</b>.PH</span></a>
+    <nav class="mast-nav" aria-label="Main">
       <ul>
-        <li><a href="#brands">Brands</a></li>
-        <li><a href="#catalog">Equipment</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#calculator">Payment Calculator</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#brands" data-scroll>Brands</a></li>
+        <li><a href="#field" data-scroll>In the field</a></li>
+        <li><a href="#catalog" data-scroll>Equipment</a></li>
+        <li><a href="#services" data-scroll>Services</a></li>
+        <li><a href="#calculator" data-scroll>Payment</a></li>
+        <li><a href="#contact" data-scroll>Contact</a></li>
       </ul>
     </nav>
-    <button class="quote-btn" type="button" data-open-quote>My Quote <span class="quote-count" id="quoteCount">0</span></button>
+    <div class="mast-right">
+      <button class="quote-link" type="button" data-open-quote><span aria-hidden="true">[ </span><span class="ql">My quote </span><span class="quote-count" id="quoteCount">0</span><span aria-hidden="true"> → ]</span></button>
+      <button class="burger" type="button" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="sheet"><i></i><i></i></button>
+    </div>
   </div>
 </header>
 
-<main id="top">
-  <div class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow">Golf course &middot; Sports turf &middot; Grounds care</p>
-        <h1>The turf equipment the <em>Philippines</em> plays on.</h1>
-        <p class="lead">Groundmasters.ph supplies, delivers and services world-class mowers, aerators, sprayers, tractors and compact equipment for golf courses, resorts, parks, LGUs and government facilities, priced in Philippine Peso.</p>
-        <div class="hero-cta">
-          <a class="btn-gold" href="#catalog">Browse equipment</a>
-          <a class="btn-ghost" href="#contact">Talk to a turf specialist</a>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="sheet-top">
+    <a class="brand" href="#top" data-scroll data-close-sheet><img src="assets/gm-mark.png" alt="" /><span>GROUND<b>MASTERS</b>.PH</span></a>
+    <button class="sheet-close" type="button" id="sheetClose" aria-label="Close menu"><i></i><i></i></button>
+  </div>
+  <nav aria-label="Mobile">
+    <a href="#brands" data-scroll data-close-sheet>Brands</a>
+    <a href="#field" data-scroll data-close-sheet>In the field</a>
+    <a href="#catalog" data-scroll data-close-sheet>Equipment</a>
+    <a href="#services" data-scroll data-close-sheet>Services</a>
+    <a href="#calculator" data-scroll data-close-sheet>Payment</a>
+    <a href="#contact" data-scroll data-close-sheet>Contact</a>
+  </nav>
+</div>
+
+<main>
+  <div class="stack" id="stack">
+
+    <!-- 1 · Hero -->
+    <div class="layer pin" data-pin>
+      <div class="layer-inner">
+        <section class="hero" id="top" aria-label="Introduction">
+          <canvas class="contours" data-contours="light" aria-hidden="true"></canvas>
+          <div class="wrap hero-grid">
+            <div class="hero-id">
+              <p class="id-tag" data-rise data-delay="180">sjk-guahan inc &middot; turf &amp; grounds</p>
+              <h1 class="display" data-split="words" data-delay="180" data-stagger="90">The grounds equipment the <em>Philippines</em> plays on.</h1>
+              <ul class="meta">
+                <li data-rise data-delay="560"><svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><rect width="18" height="6" fill="#0038A8"/><rect y="6" width="18" height="6" fill="#CE1126"/><path d="M0 0L9 6L0 12Z" fill="#fff"/><circle cx="3.2" cy="6" r="1.3" fill="#FCD116"/></svg>Philippines</li>
+                <li data-rise data-delay="690"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0L9.6 6.4L16 8L9.6 9.6L8 16L6.4 9.6L0 8L6.4 6.4Z" fill="currentColor"/></svg>7 global brands</li>
+                <li data-rise data-delay="820"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0L9.6 6.4L16 8L9.6 9.6L8 16L6.4 9.6L0 8L6.4 6.4Z" fill="currentColor"/></svg>Luzon &amp; VisMin coverage</li>
+              </ul>
+            </div>
+
+            <figure class="plate hero-photo" id="heroPhoto" data-rise data-delay="300">
+              <img src="assets/photo-aerator-green.jpg" alt="Ride-on deep-tine aerator working a golf green" />
+            </figure>
+
+            <div class="hero-panels" data-rise data-delay="900">
+              <div class="bracket panel">
+                <p class="eyebrow">Featured</p>
+                <dl>
+                  <dt>Deep-tine aeration</dt>
+                  <dd>Campey Verti-Drain</dd>
+                  <dd>Greens &middot; fairways &middot; pitches</dd>
+                </dl>
+                <img class="thumb" src="assets/products/verti-drain-7316.webp" alt="Verti-Drain deep-tine aerator" />
+              </div>
+              <div class="bracket panel">
+                <p class="eyebrow">Our lineup</p>
+                <dl class="stats-dl">
+                  <div><dt>Brands</dt><dd data-split="letters" data-delay="1000" data-stagger="40">7</dd></div>
+                  <div><dt>Models</dt><dd data-split="letters" data-delay="1090" data-stagger="40" id="modelCount">0</dd></div>
+                  <div><dt>Regions</dt><dd data-split="letters" data-delay="1180" data-stagger="40">3</dd></div>
+                </dl>
+              </div>
+            </div>
+          </div>
+
+          <div class="wrap hero-foot" data-rise data-delay="1400">
+            <p class="lead">Groundmasters.ph supplies, delivers and services world-class mowers, aerators, sprayers, tractors and compact equipment for golf courses, resorts, parks, LGUs and government facilities, priced in Philippine Peso.</p>
+            <a class="cta" href="#catalog" data-scroll>Browse equipment <svg viewBox="0 0 13.7 10.7" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5.35H13M8 10.35L13 5.35L8 .35"/></svg></a>
+            <div class="right">
+              <a class="tlink" href="#contact" data-scroll>Talk to a specialist</a>
+              <a class="tlink" href="tel:+63277455089">(02) 7-745-50-89</a>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="shade" aria-hidden="true"></div>
+    </div>
+
+    <!-- 2 · Brands -->
+    <div class="layer pin" data-pin>
+      <div class="layer-inner">
+        <section class="brands-sec on-dark" id="brands" aria-labelledby="brandsTitle">
+          <canvas class="seam" id="seam" aria-hidden="true"></canvas>
+          <div class="wrap">
+            <div class="sec-head">
+              <div>
+                <p class="eyebrow">One supplier, the whole course</p>
+                <h2 class="display" id="brandsTitle" data-split="words" data-stagger="80" style="margin-top:16px">Our brands</h2>
+                <p data-rise>From greens and fairways to bunkers, sprayers and earthworks. Pick a brand to see its lineup.</p>
+              </div>
+            </div>
+            <div class="brands" id="brandGrid"></div>
+          </div>
+        </section>
+      </div>
+      <div class="shade" aria-hidden="true"></div>
+    </div>
+
+    <!-- 3 · Field timeline (last layer: covers, never covered) -->
+    <div class="layer last">
+      <section class="tl-sec on-dark" id="field" aria-labelledby="fieldTitle">
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <p class="eyebrow">Equipment in the field</p>
+              <h2 class="display" id="fieldTitle" data-split="words" data-stagger="80" style="margin-top:16px">Built for every corner of the grounds</h2>
+            </div>
+          </div>
+          <div class="tl" id="timeline">
+            <div class="rail" aria-hidden="true"><div class="thread" id="thread"></div><div class="marker" id="marker"></div></div>
+            <article class="row">
+              <figure class="plate"><img src="assets/photo-iseki-tractor.jpg" alt="ISEKI TG5390 compact tractor towing a water tank" loading="lazy" /></figure>
+              <div class="copy">
+                <div class="num" data-split="letters" data-stagger="70" data-settle>01</div>
+                <h3>ISEKI compact tractors</h3>
+                <p>Towing, spraying and estate work, with the power for loaders and turf implements all year round.</p>
+                <button class="tlink" type="button" data-show-brand="ISEKI">View ISEKI lineup →</button>
+              </div>
+            </article>
+            <article class="row">
+              <figure class="plate"><img src="assets/photo-husqvarna-rider.jpg" alt="Husqvarna R16 front-deck ride-on mower" loading="lazy" /></figure>
+              <div class="copy">
+                <div class="num" data-split="letters" data-stagger="70" data-settle>02</div>
+                <h3>Husqvarna riders</h3>
+                <p>Front-deck mowing for daily grounds upkeep, nimble around trees, beds and buildings.</p>
+                <button class="tlink" type="button" data-show-brand="Husqvarna">View Husqvarna lineup →</button>
+              </div>
+            </article>
+            <article class="row">
+              <figure class="plate"><img src="assets/photo-wacker-neuson-ez26.jpg" alt="Wacker Neuson EZ26 mini excavator" loading="lazy" /></figure>
+              <div class="copy">
+                <div class="num" data-split="letters" data-stagger="70" data-settle>03</div>
+                <h3>Wacker Neuson mini excavators</h3>
+                <p>Drainage, bunker and course construction, in spaces too tight for full-size machines.</p>
+                <button class="tlink" type="button" data-show-brand="Wacker Neuson">View Wacker Neuson lineup →</button>
+              </div>
+            </article>
+          </div>
         </div>
-      </div>
-      <div class="hero-card">
-        <img src="assets/gm-logo.png" alt="Groundmasters.ph" />
-        <div class="peso-badge"><strong>₱</strong><span>All prices in Philippine Peso, VAT-inclusive. No dollar conversion, no forex surprises.</span></div>
-      </div>
+      </section>
     </div>
   </div>
 
-  <div class="stats">
+  <!-- 4 · Catalog -->
+  <section class="sec" id="catalog" aria-labelledby="catalogTitle">
     <div class="wrap">
-      <div class="stat"><b>7</b><span>Global equipment brands</span></div>
-      <div class="stat"><b id="modelCount">0</b><span>Models in our lineup</span></div>
-      <div class="stat"><b>Luzon &amp; VisMin</b><span>Sales and service coverage</span></div>
-      <div class="stat"><b>₱</b><span>Peso pricing &amp; PhilGEPS-ready quotes</span></div>
-    </div>
-  </div>
-
-  <section id="brands">
-    <div class="wrap">
-      <div class="section-head">
+      <div class="sec-head">
         <div>
-          <h2>Our brands</h2>
-          <p>One supplier for the whole course: from greens and fairways to bunkers, sprayers and earthworks.</p>
-        </div>
-      </div>
-      <div class="brands" id="brandGrid"></div>
-    </div>
-  </section>
-
-  <section id="catalog">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <h2>Equipment lineup</h2>
-          <p>Prices shown in Philippine Peso (₱). Add units to your quote and we'll send a formal peso proposal.</p>
+          <p class="eyebrow">The lineup</p>
+          <h2 class="display" id="catalogTitle" data-split="words" data-stagger="80" style="margin-top:16px">Equipment lineup</h2>
+          <p data-rise style="color:rgb(11 18 14 / .65)">Prices shown in Philippine Peso (₱). Add units to your quote and we'll send a formal peso proposal.</p>
         </div>
         <input class="search" id="search" type="search" placeholder="Search model, e.g. GX560" aria-label="Search equipment" />
       </div>
@@ -289,90 +589,100 @@
     </div>
   </section>
 
-  <section id="services">
+  <!-- 5 · Services -->
+  <section class="sec" id="services" aria-labelledby="servicesTitle">
     <div class="wrap">
-      <div class="section-head">
+      <div class="sec-head">
         <div>
-          <h2>More than equipment</h2>
-          <p>Backed by SJK-Guahan Inc's service team and parts inventory in Manila.</p>
+          <p class="eyebrow">Backed by SJK-Guahan Inc</p>
+          <h2 class="display" id="servicesTitle" data-split="words" data-stagger="80" style="margin-top:16px">More than equipment</h2>
+          <p data-rise style="color:rgb(11 18 14 / .65)">Our service team and parts inventory in Manila keep your fleet working.</p>
         </div>
       </div>
       <div class="services">
-        <div class="service"><h3>Delivery &amp; commissioning</h3><p>Nationwide delivery, unit set-up and operator orientation on site.</p></div>
-        <div class="service"><h3>Parts &amp; reel service</h3><p>Genuine parts, reel grinding and blade sharpening to keep greens tournament-ready.</p></div>
-        <div class="service"><h3>Preventive maintenance</h3><p>Scheduled PMS plans for fleets, priced per unit per year in ₱.</p></div>
-        <div class="service"><h3>Government &amp; PhilGEPS</h3><p>Formal peso quotations and documentation for LGU, AFP and agency procurement.</p></div>
+        <div class="bracket service" data-rise><p class="eyebrow">01</p><h3>Delivery &amp; commissioning</h3><p>Nationwide delivery, unit set-up and operator orientation on site.</p></div>
+        <div class="bracket service" data-rise data-delay="90"><p class="eyebrow">02</p><h3>Parts &amp; reel service</h3><p>Genuine parts, reel grinding and blade sharpening to keep greens tournament-ready.</p></div>
+        <div class="bracket service" data-rise data-delay="180"><p class="eyebrow">03</p><h3>Preventive maintenance</h3><p>Scheduled PMS plans for fleets, priced per unit per year in ₱.</p></div>
+        <div class="bracket service" data-rise data-delay="270"><p class="eyebrow">04</p><h3>Government &amp; PhilGEPS</h3><p>Formal peso quotations and documentation for LGU, AFP and agency procurement.</p></div>
       </div>
     </div>
   </section>
 
-  <section id="calculator">
+  <!-- 6 · Calculator -->
+  <section class="sec" id="calculator" aria-labelledby="calcTitle">
     <div class="wrap">
-      <div class="calc">
+      <div class="calc on-dark" data-rise>
         <div>
           <p class="eyebrow">Plan your budget</p>
-          <h2 style="margin:0;font-stretch:112%">Peso payment calculator</h2>
+          <h2 class="display" id="calcTitle">Peso payment calculator</h2>
           <label for="calcAmount">Equipment amount (₱)</label>
           <input id="calcAmount" type="text" inputmode="numeric" value="1,000,000" />
-          <label for="calcDown">Down payment</label>
-          <select id="calcDown">
-            <option value="0.2">20%</option>
-            <option value="0.3" selected>30%</option>
-            <option value="0.5">50%</option>
-          </select>
-          <label for="calcTerm">Payment term</label>
-          <select id="calcTerm">
-            <option value="6">6 months</option>
-            <option value="12" selected>12 months</option>
-            <option value="24">24 months</option>
-          </select>
+          <p class="terms">Our payment terms: 50% down payment to confirm your order, and the remaining 50% in full upon delivery.</p>
         </div>
-        <div class="calc-out">
+        <div class="bracket calc-out">
           <dl>
-            <dt>Down payment</dt><dd id="outDown">₱0</dd>
-            <dt>Balance</dt><dd id="outBal">₱0</dd>
-            <dt>Monthly (indicative)</dt><dd class="big" id="outMonthly">₱0</dd>
+            <dt>50% down payment<small>Upon order confirmation</small></dt><dd class="big" id="outDown">₱0</dd>
+            <dt>50% balance<small>Full payment upon delivery</small></dt><dd class="big" id="outBal">₱0</dd>
+            <dt>Total</dt><dd id="outTotal">₱0</dd>
           </dl>
-          <p style="font-size:13px;color:rgba(255,255,255,.7);margin:18px 0 0">Indicative straight split of the balance, before any financing charges. Ask us about available payment terms; final terms are subject to credit approval.</p>
+          <p class="fine">Amounts are based on the equipment amount entered. Your formal quotation confirms the final total.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact">
-    <div class="wrap">
-      <div class="section-head"><div><h2>Visit or call us</h2><p>Request a demo, a site assessment or a formal peso quotation.</p></div></div>
-      <div class="contact">
-        <div class="contact-card">
-          <h3>SJK-Guahan Inc &middot; Groundmasters.ph</h3>
-          <p>1877 Paz M Guazon St. cor Pres Quirino Ave.<br />Paco, Manila, Philippines</p>
-          <p>Phone: <a href="tel:+63277455089">(02) 7-745-50-89</a></p>
-          <p>Email: <a href="mailto:info@sjkguahan.com">info@sjkguahan.com</a></p>
+  <!-- 7 · Sign-off -->
+  <section class="signoff" id="contact" aria-labelledby="contactTitle">
+    <div class="signoff-panel on-dark">
+      <canvas class="contours" data-contours="dark" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <p class="eyebrow">Visit or call us</p>
+        <h2 class="display" id="contactTitle" data-split="words" data-stagger="90" style="margin-top:18px">Keep the grounds playing.</h2>
+        <div class="signoff-cols">
+          <div data-rise>
+            <h3>SJK-Guahan Inc &middot; Groundmasters.ph</h3>
+            <p>1877 Paz M Guazon St. cor Pres Quirino Ave.<br />Paco, Manila, Philippines</p>
+            <p><a href="tel:+63277455089">(02) 7-745-50-89</a></p>
+            <p><a href="mailto:info@sjkguahan.com">info@sjkguahan.com</a></p>
+          </div>
+          <div data-rise data-delay="90">
+            <h3>Coverage</h3>
+            <p>North Luzon &middot; South Luzon &middot; Visayas &amp; Mindanao</p>
+            <p>Golf and country clubs, resorts, sports facilities, universities, LGUs, AFP and government agencies.</p>
+          </div>
+          <div>
+            <h3>Explore</h3>
+            <ul class="foot-nav">
+              <li><a href="#brands" data-scroll data-split="letters" data-stagger="22">Brands</a></li>
+              <li><a href="#catalog" data-scroll data-split="letters" data-stagger="22" data-delay="80">Equipment</a></li>
+              <li><a href="#services" data-scroll data-split="letters" data-stagger="22" data-delay="160">Services</a></li>
+              <li><a href="#calculator" data-scroll data-split="letters" data-stagger="22" data-delay="240">Payment</a></li>
+            </ul>
+          </div>
+          <div data-rise data-delay="180">
+            <button class="cta light" type="button" data-open-quote>Start a quote <svg viewBox="0 0 13.7 10.7" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5.35H13M8 10.35L13 5.35L8 .35"/></svg></button>
+          </div>
         </div>
-        <div class="contact-card">
-          <h3>Coverage</h3>
-          <p><strong>North Luzon</strong> &middot; <strong>South Luzon</strong> &middot; <strong>Visayas &amp; Mindanao</strong></p>
-          <p>Golf and country clubs, resorts, sports facilities, universities, LGUs, AFP and government agencies.</p>
-          <p><button class="quote-btn" type="button" data-open-quote>Start a quote</button></p>
+        <div class="legal">
+          <img src="assets/gm-logo.png" alt="Groundmasters.ph" />
+          <span>&copy; <span id="year"></span> SJK-Guahan Inc. All prices in Philippine Peso (₱).</span>
+          <p class="credits">Photos via Wikimedia Commons, resized:
+            <a href="https://commons.wikimedia.org/wiki/File:091008_ATRGC_Aerifikace_greenu_0024.JPG">aerator</a> by Vít Švajcr (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>);
+            <a href="https://commons.wikimedia.org/wiki/File:Iseki_TG_5390.jpg">ISEKI TG5390</a> by Reise Reise (<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>);
+            <a href="https://commons.wikimedia.org/wiki/File:Husqvarna-Rider.jpg">Husqvarna R16</a> by Cryptic-waveform (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>);
+            <a href="https://commons.wikimedia.org/wiki/File:Wacker_Neuson_EZ26.jpg">Wacker Neuson EZ26</a> by Bene Riobó (<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>). Product images courtesy of their manufacturers.</p>
         </div>
       </div>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <img src="assets/gm-logo.png" alt="Groundmasters.ph" />
-    <span>&copy; <span id="year"></span> SJK-Guahan Inc. All prices in Philippine Peso (₱).</span>
-  </div>
-</footer>
-
 <div class="drawer-bg" id="drawerBg"></div>
 <aside class="drawer" id="drawer" aria-label="Quote request">
-  <header>
+  <div class="drawer-head">
     <h3>My Quote</h3>
     <button class="x" type="button" id="closeDrawer" aria-label="Close">&times;</button>
-  </header>
+  </div>
   <div class="drawer-body" id="quoteLines"></div>
   <div class="totals">
     <div><span>Priced items</span><span id="tSub">₱0.00</span></div>
@@ -384,16 +694,16 @@
       <input name="email" type="email" required placeholder="Email" autocomplete="email" />
       <input name="phone" placeholder="Mobile number" autocomplete="tel" />
       <textarea name="notes" rows="2" placeholder="Delivery location, timeline, notes"></textarea>
-      <button class="quote-btn" type="submit" style="justify-content:center">Send quote request</button>
+      <button class="cta" type="submit">Send quote request</button>
     </form>
   </div>
 </aside>
 
 <script>
   // ---------------------------------------------------------------------
-  // PRICES: all amounts are Philippine Peso (₱), VAT-inclusive.
-  // Set `price` to the SRP in pesos (e.g. 1080000). Leave it null to show
-  // "Price on request".
+  // PRODUCTS: [brand, model, category, description]. Cards show the
+  // description; `price` (₱, VAT-inclusive) is only used in the quote drawer
+  // and enquiry email. Leave it null for "price on request".
   // ---------------------------------------------------------------------
   const BRANDS = {
     Jacobsen: { tag: "Mowers", blurb: "Greens, fairway, rough and trim mowers trusted by golf courses worldwide." },
@@ -406,92 +716,96 @@
   };
 
   const PRODUCTS = [
-    ["Jacobsen", "PGM22", "Walk-behind greens mower"],
-    ["Jacobsen", "Eclipse2 122F", "Walk-behind greens mower"],
-    ["Jacobsen", "Eclipse2 Elite", "Walk-behind greens mower"],
-    ["Jacobsen", "Greens King IV Plus", "Riding greens mower"],
-    ["Jacobsen", "GP400", "Riding greens mower"],
-    ["Jacobsen", "SLF530", "Lightweight fairway mower"],
-    ["Jacobsen", "LF550", "Fairway mower"],
-    ["Jacobsen", "LF570", "Fairway mower"],
-    ["Jacobsen", "AR321", "Rotary rough mower"],
-    ["Jacobsen", "AR331", "Rotary rough mower"],
-    ["Jacobsen", "AR530", "Rotary rough mower"],
-    ["Jacobsen", "AR730", "Rotary rough mower"],
-    ["Jacobsen", "TR320", "Trim & surrounds mower"],
-    ["Jacobsen", "TR330", "Trim & surrounds mower"],
-    ["Smithco", "Sand Star I", "Bunker rake"],
-    ["Smithco", "Sand Star III", "Bunker rake"],
-    ["Smithco", "Sweep Star 48", "Turf sweeper"],
-    ["Smithco", "Sweep Star 60", "Turf sweeper"],
-    ["Smithco", "Sweep Star V-62", "Turf sweeper"],
-    ["Smithco", "Spray Star 1100", "Turf sprayer"],
-    ["Smithco", "Spray Star 1200", "Turf sprayer"],
-    ["Smithco", "Spray Star 1300", "Turf sprayer"],
-    ["Smithco", "Tournament Ultra Lite 7576", "Greens roller"],
-    ["Smithco", "Tournament XL 7000", "Greens roller"],
-    ["Smithco", "AER-8", "Aerator"],
-    ["Husqvarna", "GX560", "Hover mower"],
-    ["Husqvarna", "LC353", "Lawn mower"],
-    ["Husqvarna", "LC356", "Lawn mower"],
-    ["Husqvarna", "125B", "Handheld blower"],
-    ["Husqvarna", "350BT", "Backpack blower"],
-    ["Husqvarna", "321S15", "Hedge trimmer"],
-    ["Husqvarna", "320SM", "Edger"],
-    ["Husqvarna", "120 Mark II", "Chainsaw"],
-    ["Husqvarna", "140 Mark II", "Chainsaw"],
-    ["Husqvarna", "143R-II", "Brushcutter"],
-    ["Husqvarna", "321R", "Brushcutter"],
-    ["Husqvarna", "TS 342", "Lawn tractor"],
-    ["Husqvarna", "R216", "Rider mower"],
-    ["Campey", "Air2G2", "Air injection aerator"],
-    ["Campey", "Koro FTM 1.2", "Field top maker"],
-    ["Campey", "Verti-Drain 7316", "Deep tine aerator"],
-    ["Campey", "Verti-Drain 7416", "Deep tine aerator"],
-    ["Campey", "Shockwave 210", "Linear decompactor"],
-    ["Campey", "Shockwave 220", "Linear decompactor"],
-    ["Campey", "BM50-1600", "Overseeder / brush"],
-    ["Campey", "BM50-1800", "Overseeder / brush"],
-    ["Campey", "Rotoblast", "Renovation machine"],
-    ["Campey", "Rotoknife", "Slitter"],
-    ["Campey", "Rhea Scarifier", "Scarifier"],
-    ["Campey", "Sandcat", "Sand spreader"],
-    ["Campey", "Rotosweep", "Sweeper / collector"],
-    ["Campey", "Root Pruner", "Root pruner"],
-    ["Campey", "Topdrain 1000", "Drainage machine"],
-    ["Campey", "Dakota 310", "Topdresser"],
-    ["Campey", "Dakota 410", "Topdresser"],
-    ["Campey", "Dakota 440", "Topdresser"],
-    ["Campey", "Dakota Turf Trailer", "Turf trailer"],
-    ["Campey", "Aeraseeder", "Seeder"],
-    ["Campey", "Line Marker", "Line marker"],
-    ["ISEKI", "NT542", "Compact tractor"],
-    ["ISEKI", "NT554", "Compact tractor"],
-    ["ISEKI", "SXG324", "Ride-on mower"],
-    ["ISEKI", "SF237", "Front mower"],
-    ["ISEKI", "SF551", "Front mower"],
-    ["ISEKI", "SRA 800", "Ride-on mower"],
-    ["Wacker Neuson", "ET08", "Mini excavator"],
-    ["Wacker Neuson", "ET66", "Compact excavator"],
-    ["Wacker Neuson", "ET75", "Compact excavator"],
-    ["Wacker Neuson", "EZ17", "Zero-tail mini excavator"],
-    ["Wacker Neuson", "EZ20", "Zero-tail mini excavator"],
-    ["Wacker Neuson", "EZ28", "Zero-tail mini excavator"],
-    ["Wacker Neuson", "DT10", "Track dumper"],
-    ["Wacker Neuson", "DT15", "Track dumper"],
-    ["Wacker Neuson", "DW30", "Wheel dumper"],
-    ["Wacker Neuson", "RD7", "Ride-on roller"],
-    ["Wacker Neuson", "BS60", "Rammer"],
-    ["Wacker Neuson", "Reversible Vibratory Plate", "Plate compactor"],
-    ["Wacker Neuson", "PT3A", "Trash pump"],
-    ["Wacker Neuson", "PT6YT", "Trash pump"],
-    ["Trimax", "Pegasus S5", "Rotary mower"],
-    ["Trimax", "Procut S5", "Rotary mower"],
-    ["Trimax", "Striker", "Flail mower"],
-    ["Trimax", "Snake S3", "Wide-area mower"],
-    ["Trimax", "Warlord S3", "Flail mower"],
-    ["Trimax", "Ezeemow", "Rotary mower"],
-  ].map(([brand, model, category], i) => ({ id: i, brand, model, category, price: null }));
+    ["Jacobsen", "PGM22", "Walk-behind greens mower", "Precision walk-behind reel mower for tournament-quality greens, with a floating cutting unit that follows contours closely."],
+    ["Jacobsen", "Eclipse2 122F", "Walk-behind greens mower", "Hybrid walk-behind greens mower with an electric reel drive for a quiet, consistent cut and fewer hydraulic leak points."],
+    ["Jacobsen", "Eclipse2 Elite", "Walk-behind greens mower", "Battery-electric walk-behind greens mower with adjustable frequency of clip and zero emissions on the green."],
+    ["Jacobsen", "Greens King IV Plus", "Riding greens mower", "Proven triplex riding greens mower that delivers a fast, even cut across large putting surfaces."],
+    ["Jacobsen", "GP400", "Riding greens mower", "Riding greens mower built for clean finishes, low ground pressure and operator comfort on daily cuts."],
+    ["Jacobsen", "SLF530", "Lightweight fairway mower", "Lightweight five-reel fairway mower that reduces compaction while delivering a fine, striped finish."],
+    ["Jacobsen", "LF550", "Fairway mower", "Five-reel fairway mower with a wide cutting width for high productivity on large fairways."],
+    ["Jacobsen", "LF570", "Fairway mower", "Heavy-duty five-reel fairway mower designed for demanding conditions and long hours on big courses."],
+    ["Jacobsen", "AR321", "Rotary rough mower", "Compact rotary mower with three decks for roughs, surrounds and parks, nimble around trees and slopes."],
+    ["Jacobsen", "AR331", "Rotary rough mower", "Three-deck rotary mower with all-wheel drive for consistent cutting on uneven or sloping terrain."],
+    ["Jacobsen", "AR530", "Rotary rough mower", "Five-deck rotary mower for wide roughs and large open areas, combining cutting width with a quality finish."],
+    ["Jacobsen", "AR730", "Rotary rough mower", "Wide-area rotary mower with seven decks for maximum productivity on expansive roughs and grounds."],
+    ["Jacobsen", "TR320", "Trim & surrounds mower", "Triplex reel mower for tees, approaches and surrounds, balancing a fine cut with easy manoeuvrability."],
+    ["Jacobsen", "TR330", "Trim & surrounds mower", "All-wheel-drive triplex reel mower for tees, surrounds and slopes where traction matters."],
+    ["Smithco", "Sand Star I", "Bunker rake", "Compact bunker rake that grooms sand traps quickly and evenly for a smooth, playable finish."],
+    ["Smithco", "Sand Star III", "Bunker rake", "Three-wheel bunker rake with strong traction for grooming bunkers and infields in one pass."],
+    ["Smithco", "Sweep Star 48", "Turf sweeper", "Compact turf sweeper for collecting cores, clippings, thatch and leaves from greens and grounds."],
+    ["Smithco", "Sweep Star 60", "Turf sweeper", "Tow-behind turf sweeper with a wide sweep for fast clean-up after aeration and verticutting."],
+    ["Smithco", "Sweep Star V-62", "Turf sweeper", "Sweeper-vac combining brush sweeping and vacuum pickup for leaves, debris and aeration cores."],
+    ["Smithco", "Spray Star 1100", "Turf sprayer", "Compact dedicated turf sprayer for greens and tees, accurate and easy to manoeuvre in tight areas."],
+    ["Smithco", "Spray Star 1200", "Turf sprayer", "Mid-size dedicated turf sprayer with consistent application rates for fairways and sports fields."],
+    ["Smithco", "Spray Star 1300", "Turf sprayer", "Large-capacity dedicated turf sprayer for efficient, precise coverage of big areas."],
+    ["Smithco", "Tournament Ultra Lite 7576", "Greens roller", "Lightweight greens roller that smooths and firms putting surfaces to boost green speed without heavy compaction."],
+    ["Smithco", "Tournament XL 7000", "Greens roller", "Wide greens roller for fast, even rolling of large greens to increase speed and consistency."],
+    ["Smithco", "AER-8", "Aerator", "Tow-behind turf aerator that relieves compaction and improves air, water and nutrient movement into the root zone."],
+    ["Husqvarna", "GX560", "Hover mower", "Hover mower that floats on a cushion of air, ideal for steep banks, slopes and hard-to-reach areas."],
+    ["Husqvarna", "LC353", "Lawn mower", "Self-propelled petrol lawn mower with variable speed for efficient, comfortable mowing of medium lawns."],
+    ["Husqvarna", "LC356", "Lawn mower", "Wide-deck self-propelled petrol lawn mower for faster coverage of larger lawns."],
+    ["Husqvarna", "125B", "Handheld blower", "Lightweight handheld petrol blower for quickly clearing leaves, clippings and debris from paths and hardscapes."],
+    ["Husqvarna", "350BT", "Backpack blower", "Powerful backpack blower for clearing large areas, with a harness that keeps the weight comfortable for long sessions."],
+    ["Husqvarna", "321S15", "Backpack sprayer", "Petrol-powered 15 L backpack sprayer for applying fertilisers and plant-care products across turf and gardens."],
+    ["Husqvarna", "320SM", "Manual sprayer", "Manual pump sprayer for spot treatments and small-area application in gardens and landscaped areas."],
+    ["Husqvarna", "120 Mark II", "Chainsaw", "Easy-to-start petrol chainsaw for pruning, firewood and light tree work around the grounds."],
+    ["Husqvarna", "140 Mark II", "Chainsaw", "All-round petrol chainsaw with extra power for felling small trees and storm clean-up."],
+    ["Husqvarna", "143R-II", "Brushcutter", "Robust brushcutter for clearing long grass, weeds and light brush along edges and rough areas."],
+    ["Husqvarna", "321R", "Brushcutter", "Professional brushcutter with a powerful engine for demanding grass and scrub clearing."],
+    ["Husqvarna", "TS 342", "Lawn tractor", "Garden tractor with a wide cutting deck for comfortable, efficient mowing of large lawns and estates."],
+    ["Husqvarna", "R216", "Rider mower", "Articulated front-deck rider with tight turning and excellent visibility for mowing around obstacles."],
+    ["Campey", "Air2G2", "Air injection aerator", "Air-injection aerator that fractures compacted soil below the surface without disrupting play."],
+    ["Campey", "Koro FTM 1.2", "Field top maker", "Field Top Maker that removes thatch, organic matter or the full surface layer in one pass for renovation."],
+    ["Campey", "Verti-Drain 7316", "Deep tine aerator", "Tractor-mounted deep-tine aerator that relieves compaction and improves drainage on greens and sports fields."],
+    ["Campey", "Verti-Drain 7416", "Deep tine aerator", "Wider deep-tine aerator for faster decompaction of fairways, sports pitches and large turf areas."],
+    ["Campey", "Shockwave 210", "Linear decompactor", "Linear decompactor that fractures compacted soil with minimal surface disruption, so play can resume immediately."],
+    ["Campey", "Shockwave 220", "Linear decompactor", "Wider-format linear decompactor for quick, low-disruption decompaction of large turf areas."],
+    ["Campey", "BM50-1600", "Overseeder / brush", "Tractor-mounted verticutter for removing thatch and lateral growth to keep turf dense and healthy."],
+    ["Campey", "BM50-1800", "Overseeder / brush", "Wider verticutter for faster thatch removal and surface renovation on larger areas."],
+    ["Campey", "Rotoblast", "Renovation machine", "Renovation machine that clears debris and surface material, preparing turf for overseeding and topdressing."],
+    ["Campey", "Rotoknife", "Slitter", "Slitter that cuts deep slits to relieve compaction and improve drainage with little surface disturbance."],
+    ["Campey", "Rhea Scarifier", "Scarifier", "Scarifier for cutting out thatch and moss to open up the sward and stimulate healthy growth."],
+    ["Campey", "Sandcat", "Sand spreader", "Sand spreader for accurate, even topdressing and sand application across turf surfaces."],
+    ["Campey", "Rotosweep", "Sweeper / collector", "Sweeper-collector that picks up cores, thatch, leaves and debris after renovation work."],
+    ["Campey", "Root Pruner", "Root pruner", "Cuts tree roots along turf edges to stop them competing with grass for water and nutrients."],
+    ["Campey", "Topdrain 1000", "Drainage machine", "Drainage machine that installs sand-filled slits to move surface water off saturated turf quickly."],
+    ["Campey", "Dakota 310", "Topdresser", "Compact topdresser for precise, consistent material application on greens and tees."],
+    ["Campey", "Dakota 410", "Topdresser", "Turf Tender topdresser and material handler for spreading sand and compost over larger areas."],
+    ["Campey", "Dakota 440", "Topdresser", "High-capacity Turf Tender topdresser for fast, even spreading on fairways and sports fields."],
+    ["Campey", "Dakota Turf Trailer", "Turf trailer", "Heavy-duty turf trailer for hauling sand, soil and materials with low ground pressure on turf."],
+    ["Campey", "Aeraseeder", "Seeder", "Overseeder that places seed directly into the soil for quick, even germination and turf recovery."],
+    ["Campey", "Line Marker", "Line marker", "Line marker for crisp, accurate pitch and field markings with efficient paint use."],
+    ["ISEKI", "NT542", "Compact tractor", "Compact tractor for towing, mowing and loader work on golf courses, estates and parks."],
+    ["ISEKI", "NT554", "Compact tractor", "Versatile compact tractor with extra power for heavier implements and all-season grounds work."],
+    ["ISEKI", "SXG324", "Ride-on mower", "Ride-on mower with high-lift collection for a clean finish on lawns, estates and amenity areas."],
+    ["ISEKI", "SF237", "Front mower", "Front-mount mower with excellent visibility and manoeuvrability for parks, schools and grounds."],
+    ["ISEKI", "SF551", "Front mower", "Powerful front-mount mower for large-area cutting in parks, municipalities and sports grounds."],
+    ["ISEKI", "SRA 800", "Ride-on mower", "Compact ride-on mower for long grass and rough areas, built to handle tough conditions."],
+    ["Wacker Neuson", "ET08", "Mini excavator", "Micro excavator that fits through narrow access points for trenching, irrigation and landscaping work."],
+    ["Wacker Neuson", "ET66", "Compact excavator", "Compact excavator with strong digging performance for drainage, bunker construction and earthworks."],
+    ["Wacker Neuson", "ET75", "Compact excavator", "Robust compact excavator for heavier earthmoving and site preparation on course construction projects."],
+    ["Wacker Neuson", "EZ17", "Zero-tail mini excavator", "Zero-tail mini excavator that works close to walls and obstacles without the rear swinging out."],
+    ["Wacker Neuson", "EZ20", "Zero-tail mini excavator", "Zero-tail mini excavator for confined-space digging, trenching and landscaping."],
+    ["Wacker Neuson", "EZ28", "Zero-tail mini excavator", "Zero-tail mini excavator combining a compact footprint with the power for bigger digging jobs."],
+    ["Wacker Neuson", "DT10", "Track dumper", "Compact track dumper for moving sand, soil and gravel across soft ground with low ground pressure."],
+    ["Wacker Neuson", "DT15", "Track dumper", "Track dumper with higher payload for efficient material transport on construction and renovation sites."],
+    ["Wacker Neuson", "DW30", "Wheel dumper", "Wheel dumper with a high-tip skip for fast, safe transport and unloading of materials on site."],
+    ["Wacker Neuson", "RD7", "Ride-on roller", "Ride-on roller for compacting paths, cart tracks and base layers with a smooth finish."],
+    ["Wacker Neuson", "BS60", "Rammer", "Vibratory rammer for compacting soil in trenches and confined areas around pipes and foundations."],
+    ["Wacker Neuson", "Reversible Vibratory Plate", "Plate compactor", "Reversible plate compactor for compacting granular soils and base layers, forward and backward."],
+    ["Wacker Neuson", "PT3A", "Trash pump", "Trash pump for dewatering bunkers, ponds and flooded areas, handling water with solids and debris."],
+    ["Wacker Neuson", "PT6YT", "Trash pump", "Trailer-mounted high-capacity trash pump for large-scale dewatering and flood response."],
+    ["Trimax", "Pegasus S5", "Rotary mower", "Wide-area rotary mower with folding wings for fast, high-quality cutting on large open areas."],
+    ["Trimax", "Procut S5", "Rotary mower", "Rear-mounted rotary mower that delivers a fine, even finish on sports fields and amenity turf."],
+    ["Trimax", "Striker", "Flail mower", "Heavy-duty rotary mower for long grass, roadsides and rough areas where durability counts."],
+    ["Trimax", "Snake S3", "Wide-area mower", "Wide-area rotary mower with flexible decks that follow ground contours for a scalp-free cut."],
+    ["Trimax", "Warlord S3", "Flail mower", "Heavy-duty flail mower for long grass, scrub and rough terrain on roadsides and parklands."],
+    ["Trimax", "Ezeemow", "Rotary mower", "Compact flail mower for small tractors, ideal for rough grass, orchards and lifestyle blocks."],
+  ].map(([brand, model, category, desc], i) => ({
+    id: i, brand, model, category, desc, price: null,
+    // Product photo from the manufacturer's site, named after the model (e.g. "Sand Star I" -> sand-star-i.webp)
+    img: `assets/products/${model.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.webp`,
+  }));
 
   const peso = (n) => "₱" + Number(n || 0).toLocaleString("en-PH", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const pesoWhole = (n) => "₱" + Math.round(Number(n) || 0).toLocaleString("en-PH");
@@ -508,20 +822,27 @@
   document.getElementById("modelCount").textContent = PRODUCTS.length;
   document.getElementById("year").textContent = new Date().getFullYear();
 
+  // Scrolls to a section. Set by the motion script once smooth scrolling is up.
+  let scrollToTarget = (el) => el.scrollIntoView();
+
   // Brands
   document.getElementById("brandGrid").innerHTML = Object.entries(BRANDS).map(([name, b]) => {
     const n = PRODUCTS.filter((p) => p.brand === name).length;
     return `<button class="brand-card" type="button" data-brand="${esc(name)}">
       <span class="tag">${esc(b.tag)}</span><h3>${esc(name)}</h3><p>${esc(b.blurb)}</p>
-      <p><strong style="color:var(--green)">${n} models &rarr;</strong></p></button>`;
-  }).join("");
+      <span class="n">${n} models <span>&rarr;</span></span></button>`;
+  }).join("") + `<div class="brand-card coverage"><span class="tag">Coverage</span><h3>Luzon &amp; VisMin</h3><p>Sales, delivery and service for clubs, resorts, LGUs and agencies nationwide.</p></div>`;
+
+  function showBrand(name) {
+    activeBrand = name;
+    renderFilters(); renderProducts();
+    scrollToTarget(document.getElementById("catalog"));
+  }
   document.getElementById("brandGrid").addEventListener("click", (e) => {
     const card = e.target.closest("[data-brand]");
-    if (!card) return;
-    activeBrand = card.dataset.brand;
-    renderFilters(); renderProducts();
-    document.getElementById("catalog").scrollIntoView();
+    if (card) showBrand(card.dataset.brand);
   });
+  document.querySelectorAll("[data-show-brand]").forEach((b) => b.addEventListener("click", () => showBrand(b.dataset.showBrand)));
 
   // Filters
   function renderFilters() {
@@ -537,22 +858,18 @@
   document.getElementById("search").addEventListener("input", (e) => { query = e.target.value.trim().toLowerCase(); renderProducts(); });
 
   // Products
-  function priceHtml(p) {
-    return p.price != null
-      ? `${peso(p.price)}<small>VAT-inclusive</small>`
-      : `₱ Price on request<small>Formal peso quote within 1 business day</small>`;
-  }
   function renderProducts() {
     const list = PRODUCTS.filter((p) =>
       (activeBrand === "All" || p.brand === activeBrand) &&
-      (!query || `${p.brand} ${p.model} ${p.category}`.toLowerCase().includes(query)));
+      (!query || `${p.brand} ${p.model} ${p.category} ${p.desc}`.toLowerCase().includes(query)));
     document.getElementById("productGrid").innerHTML = list.length ? list.map((p) => {
       const inQ = quote[p.id];
       return `<article class="product">
+        <div class="pimg"><img src="${esc(p.img)}" alt="${esc(p.brand)} ${esc(p.model)}" loading="lazy" onerror="this.parentNode.remove()" /></div>
         <span class="pb">${esc(p.brand)}</span>
         <h4>${esc(p.model)}</h4>
         <span class="cat">${esc(p.category)}</span>
-        <div class="price">${priceHtml(p)}</div>
+        <p class="desc">${esc(p.desc)}</p>
         <button class="add ${inQ ? "added" : ""}" type="button" data-add="${p.id}">${inQ ? "✓ In quote" : "Add to quote"}</button>
       </article>`;
     }).join("") : `<p class="empty">No equipment matches "${esc(query)}".</p>`;
@@ -586,7 +903,7 @@
         <div><strong>${esc(p.brand)} ${esc(p.model)}</strong><small>${p.price != null ? peso(p.price) + " each" : "₱ price on request"}</small></div>
         <input class="qty" type="number" min="1" value="${qty}" data-qty="${p.id}" aria-label="Quantity" />
         <button class="rm" type="button" data-rm="${p.id}">Remove</button>
-      </div>`).join("") : `<p class="empty">Your quote is empty. Add equipment from the lineup.</p>`;
+      </div>`).join("") : `<p class="empty" style="padding:24px 0;background:none">Your quote is empty. Add equipment from the lineup.</p>`;
     const sub = items.reduce((s, x) => s + (x.p.price || 0) * x.qty, 0);
     const tbq = items.filter((x) => x.p.price == null).reduce((s, x) => s + x.qty, 0);
     document.getElementById("tSub").textContent = peso(sub);
@@ -621,22 +938,419 @@
   const calcAmount = document.getElementById("calcAmount");
   function calc() {
     const amt = parseFloat(calcAmount.value.replace(/[^\d.]/g, "")) || 0;
-    const down = amt * parseFloat(document.getElementById("calcDown").value);
-    const bal = amt - down;
-    const term = parseInt(document.getElementById("calcTerm").value, 10);
+    // Terms: 50% down on order, remaining 50% in full upon delivery
+    const down = amt * 0.5;
     document.getElementById("outDown").textContent = pesoWhole(down);
-    document.getElementById("outBal").textContent = pesoWhole(bal);
-    document.getElementById("outMonthly").textContent = pesoWhole(bal / term);
+    document.getElementById("outBal").textContent = pesoWhole(amt - down);
+    document.getElementById("outTotal").textContent = pesoWhole(amt);
   }
   calcAmount.addEventListener("input", calc);
   calcAmount.addEventListener("blur", () => {
     const n = parseFloat(calcAmount.value.replace(/[^\d.]/g, "")) || 0;
     calcAmount.value = Math.round(n).toLocaleString("en-PH");
   });
-  document.getElementById("calcDown").addEventListener("change", calc);
-  document.getElementById("calcTerm").addEventListener("change", calc);
 
   renderFilters(); renderProducts(); renderQuote(); calc();
+</script>
+
+<script type="module">
+  // =====================================================================
+  // Motion: one shared ticker, react-spring-style springs, text reveals,
+  // scroll scrubs, the sticky stack, contour fields and the loading veil.
+  // =====================================================================
+  window.__motion = true;
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  // ── Ticker: one rAF loop, subscribers called no more often than their framerate ──
+  const subs = new Set();
+  let rafId = 0;
+  const loop = (time) => {
+    for (const s of [...subs]) {
+      if (time - s.last > s.rate()) { s.last = time; s.cb(time); }
+    }
+    rafId = subs.size ? requestAnimationFrame(loop) : 0;
+  };
+  const subscribe = (cb, rate = () => 0) => {
+    const s = { cb, rate, last: -Infinity };
+    subs.add(s);
+    if (!rafId) rafId = requestAnimationFrame(loop);
+    return () => subs.delete(s);
+  };
+
+  // ── Spring: react-spring's damped solver, 1ms substeps, 64ms frame cap, mass 1 ──
+  class Spring {
+    constructor(value, { tension = 170, friction = 26 } = {}, onChange) {
+      this.value = value; this.target = value; this.velocity = 0;
+      this.tension = tension; this.friction = friction; this.onChange = onChange;
+      this.prev = 0; this.unsub = null; this.precision = 0.001;
+    }
+    to(target, delay = 0) {
+      clearTimeout(this.timer);
+      const go = () => {
+        this.target = target;
+        if (reduced) { this.set(target); return; }
+        if (!this.unsub) { this.prev = 0; this.unsub = subscribe((t) => this.step(t)); }
+      };
+      delay > 0 ? (this.timer = setTimeout(go, delay)) : go();
+      return this;
+    }
+    set(v) { this.value = this.target = v; this.velocity = 0; this.onChange?.(v); }
+    step(time) {
+      const dt = Math.min(this.prev ? time - this.prev : 16, 64);
+      this.prev = time;
+      for (let i = 0; i < dt; i++) {
+        const springForce = -this.tension * 0.000001 * (this.value - this.target);
+        const dampingForce = -this.friction * 0.001 * this.velocity;
+        this.velocity += springForce + dampingForce;
+        this.value += this.velocity;
+      }
+      if (Math.abs(this.velocity) < this.precision && Math.abs(this.target - this.value) < this.precision) {
+        this.value = this.target; this.velocity = 0; this.unsub?.(); this.unsub = null;
+      }
+      this.onChange?.(this.value);
+    }
+  }
+  const CFG = {
+    REVEAL: { tension: 90, friction: 26 }, ITEM: { tension: 170, friction: 24 }, SHEET: { tension: 190, friction: 26 },
+    FIGURE: { tension: 200, friction: 24 }, YEAR: { tension: 190, friction: 24 }, VEIL: { tension: 70, friction: 24 },
+    CLEAR: { tension: 140, friction: 26 }, LABEL: { tension: 110, friction: 26 }, WAIT: { tension: 10, friction: 30 },
+    READY: { tension: 170, friction: 26 }, SETTLE: { tension: 32, friction: 26 }, TILT: { tension: 120, friction: 22 },
+  };
+
+  // ── Text engine: split into word/letter spans, each on its own spring ──
+  function split(el) {
+    const mode = el.dataset.split;
+    const plain = el.textContent.replace(/\s+/g, " ").trim();
+    const units = [];
+    const walk = (node, cls) => {
+      for (const n of [...node.childNodes]) {
+        if (n.nodeType === 3) {
+          const parts = mode === "letters" ? [...n.textContent.replace(/\s+/g, " ")] : n.textContent.split(/\s+/);
+          parts.filter((p) => p !== "").forEach((p) => units.push({ text: p, cls }));
+        } else if (n.nodeType === 1) walk(n, n.tagName === "EM" ? "em" : cls);
+      }
+    };
+    walk(el, "");
+    el.innerHTML = "";
+    const sr = document.createElement("span"); sr.className = "sr-only"; sr.textContent = plain;
+    el.appendChild(sr);
+    const spans = units.map(({ text, cls }) => {
+      const s = document.createElement("span");
+      s.className = "u" + (cls ? " " + cls : ""); s.setAttribute("aria-hidden", "true");
+      s.textContent = text === " " ? " " : text;
+      el.appendChild(s);
+      return s;
+    });
+    const y0 = mode === "letters" ? 0.3 : 0.35;
+    return spans.map((s) => new Spring(0, mode === "letters" ? CFG.FIGURE : CFG.REVEAL, (p) => {
+      s.style.opacity = p; s.style.transform = `translateY(${(1 - p) * y0}em)`;
+    }));
+  }
+  function play(el, extraDelay = 0) {
+    if (el.dataset.played) return;
+    el.dataset.played = "1";
+    const delay = (+el.dataset.delay || 0) + extraDelay;
+    if (el.dataset.split) {
+      const stagger = +el.dataset.stagger || (el.dataset.split === "letters" ? 26 : 110);
+      el._springs.forEach((sp, i) => sp.to(1, delay + i * stagger));
+      if (el.hasAttribute("data-settle")) {
+        // Timeline numbers assemble, then settle back to 40%.
+        const settle = new Spring(1, CFG.SETTLE, (v) => (el.style.opacity = v));
+        setTimeout(() => settle.to(0.4), delay + el._springs.length * stagger + 900);
+      }
+    } else el._spring.to(1, delay);
+  }
+  const animated = [...document.querySelectorAll("[data-split], [data-rise]")];
+  animated.forEach((el) => {
+    if (el.dataset.split) el._springs = split(el);
+    else el._spring = new Spring(0, CFG.ITEM, (p) => {
+      el.style.opacity = p; el.style.transform = p >= 1 ? "" : `translateY(${(1 - p) * 0.75}rem)`;
+    });
+  });
+  const inHero = (el) => el.closest(".hero") || el.id === "masthead";
+  // Everything outside the hero plays once it is a quarter of the way into the viewport.
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { play(e.target); io.unobserve(e.target); }
+  }, { rootMargin: "0% 0% -12% 0%" });
+  animated.filter((el) => !inHero(el)).forEach((el) => io.observe(el));
+
+  // ── Smooth scroll: Lenis on the shared ticker, registered first ──
+  // Loaded in the background: nothing on the page waits for it, and native scrolling stands in until it arrives.
+  let lenis = null, veilUp = !reduced;
+  if (!reduced) {
+    import("https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.mjs").then(({ default: Lenis }) => {
+      lenis = new Lenis({ smoothWheel: true });
+      subscribe((t) => lenis.raf(t));
+      if (veilUp || document.documentElement.classList.contains("locked")) lenis.stop();
+    }).catch(() => {});
+  }
+  // Sections inside the sticky stack report a pinned rect, so they are measured by their static place in flow.
+  const stack = document.getElementById("stack");
+  const docTop = (el) => {
+    const layer = el.closest(".layer");
+    if (layer && stack.contains(layer)) {
+      let y = stack.getBoundingClientRect().top + scrollY;
+      for (const l of stack.children) { if (l === layer) break; y += l.offsetHeight; }
+      return y + (el === layer.querySelector("section") ? 0 : el.offsetTop);
+    }
+    return el.getBoundingClientRect().top + scrollY;
+  };
+  scrollToTarget = (el) => {
+    const y = el.id === "top" ? 0 : Math.max(0, docTop(el) - (el.closest(".stack") ? 0 : 68));
+    lenis ? lenis.scrollTo(y, { duration: 1.2 }) : window.scrollTo({ top: y, behavior: reduced ? "auto" : "smooth" });
+  };
+  window.scrollToTarget = scrollToTarget;
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[data-scroll]");
+    if (!a) return;
+    const el = document.querySelector(a.getAttribute("href"));
+    if (!el) return;
+    e.preventDefault();
+    if (a.hasAttribute("data-close-sheet")) closeSheet();
+    scrollToTarget(el);
+  });
+
+  // ── Masthead: solid once the page has moved ──
+  const mast = document.getElementById("masthead");
+  const onScroll = () => mast.classList.toggle("solid", scrollY > 12);
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  // ── Mobile sheet ──
+  const sheet = document.getElementById("sheet");
+  const burger = document.getElementById("burger");
+  const sheetFade = new Spring(0, CFG.SHEET, (v) => { sheet.style.opacity = v; if (v <= 0.001 && sheetFade.target === 0) sheet.classList.remove("open"); });
+  const sheetItems = [...sheet.querySelectorAll("nav a")].map((a) => new Spring(0, CFG.ITEM, (v) => {
+    a.style.opacity = v; a.style.transform = `translateY(${(1 - v) * 0.75}rem)`;
+  }));
+  function openSheet() {
+    sheet.classList.add("open"); burger.setAttribute("aria-expanded", "true");
+    document.documentElement.classList.add("locked"); lenis?.stop();
+    sheetFade.to(1); sheetItems.forEach((s, i) => { s.set(0); s.to(1, 120 + i * 55); });
+    document.getElementById("sheetClose").focus();
+  }
+  function closeSheet() {
+    burger.setAttribute("aria-expanded", "false");
+    document.documentElement.classList.remove("locked"); lenis?.start();
+    sheetFade.to(0);
+  }
+  burger.addEventListener("click", openSheet);
+  document.getElementById("sheetClose").addEventListener("click", closeSheet);
+  addEventListener("keydown", (e) => { if (e.key === "Escape" && sheet.classList.contains("open")) closeSheet(); });
+  matchMedia("(min-width: 1280px)").addEventListener("change", (m) => { if (m.matches && sheet.classList.contains("open")) closeSheet(); });
+
+  // ── Sticky stack: the covered layer recedes to 0.9 and darkens to 55% ──
+  const RECEDE_SCALE = 0.9, RECEDE_SHADE = 0.55;
+  const stackOn = matchMedia("(min-width: 1024px) and (min-height: 700px)");
+  const layers = [...stack.children];
+  const pinned = layers.filter((l) => l.hasAttribute("data-pin")).map((l) => ({
+    inner: l.querySelector(".layer-inner"), shade: l.querySelector(".shade"), next: l.nextElementSibling,
+  }));
+  let recedeQueued = false;
+  const recede = () => {
+    recedeQueued = false;
+    const view = innerHeight || 1;
+    for (const { inner, shade, next } of pinned) {
+      const p = stackOn.matches ? clamp(1 - next.getBoundingClientRect().top / view, 0, 1) : 0;
+      inner.style.transform = p > 0 ? `scale(${1 - (1 - RECEDE_SCALE) * p})` : "";
+      inner.style.willChange = p > 0 ? "transform" : "";
+      shade.style.opacity = `${RECEDE_SHADE * p}`;
+      inner.style.visibility = p >= 1 ? "hidden" : "visible";
+    }
+  };
+  const queueRecede = () => { if (!recedeQueued) { recedeQueued = true; requestAnimationFrame(recede); } };
+  addEventListener("scroll", queueRecede, { passive: true });
+  addEventListener("resize", queueRecede);
+  recede();
+
+  // ── In-view loop rule: a canvas computes only while visible, plus ten frames after ──
+  function whileVisible(el, cb, rate) {
+    let visible = false, grace = 0, unsub = null;
+    const tick = (t) => {
+      if (!visible && --grace < 0) { unsub(); unsub = null; return; }
+      cb(t);
+    };
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      if (visible) { grace = 10; if (!unsub) unsub = subscribe(tick, rate); }
+    }).observe(el);
+  }
+
+  // ── Contour field: four-sine height field, marching squares, rolled by two crossed displacements ──
+  function contours(canvas, { stroke, width = 1 }) {
+    const ctx = canvas.getContext("2d");
+    const CELL = 16, LEVELS = 9;
+    let w = 0, h = 0, dpr = 1, cols = 0, rows = 0, field = new Float32Array(0);
+    const resize = () => {
+      dpr = Math.min(devicePixelRatio || 1, 1.5);
+      w = canvas.clientWidth; h = canvas.clientHeight;
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      cols = Math.ceil(w / CELL) + 1; rows = Math.ceil(h / CELL) + 1;
+      field = new Float32Array(cols * rows);
+    };
+    new ResizeObserver(resize).observe(canvas); resize();
+    const f = (x, y, t) => {
+      const dx = x + 0.37 * Math.sin(y * 1.3 + t * 1.66 * 0.3);
+      const dy = y + 0.37 * Math.sin(x * 1.1 - t * 1.66 * 0.25);
+      return Math.sin(dx * 1.2 + t * 0.21) + Math.sin(dy * 1.5 - t * 0.17)
+        + Math.sin((dx + dy) * 0.8 + t * 0.13) + Math.sin(Math.hypot(dx - 1.5, dy - 0.8) * 1.6 - t * 0.27);
+    };
+    const draw = (time) => {
+      const t = reduced ? 0 : time / 1000;
+      const scale = 3.8 / Math.max(w, h);
+      for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) field[j * cols + i] = f(i * CELL * scale, j * CELL * scale, t);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+      ctx.strokeStyle = stroke; ctx.lineWidth = width;
+      ctx.beginPath();
+      for (let k = 0; k < LEVELS; k++) {
+        const L = -3.2 + (6.4 * k) / (LEVELS - 1);
+        for (let j = 0; j < rows - 1; j++) for (let i = 0; i < cols - 1; i++) {
+          const a = field[j * cols + i], b = field[j * cols + i + 1], c = field[(j + 1) * cols + i + 1], d = field[(j + 1) * cols + i];
+          const idx = (a > L ? 8 : 0) | (b > L ? 4 : 0) | (c > L ? 2 : 0) | (d > L ? 1 : 0);
+          if (idx === 0 || idx === 15) continue;
+          const x = i * CELL, y = j * CELL;
+          const top = [x + CELL * (L - a) / (b - a), y], right = [x + CELL, y + CELL * (L - b) / (c - b)];
+          const bottom = [x + CELL * (L - d) / (c - d), y + CELL], left = [x, y + CELL * (L - a) / (d - a)];
+          const seg = (p, q) => { ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); };
+          switch (idx) {
+            case 1: case 14: seg(left, bottom); break;
+            case 2: case 13: seg(bottom, right); break;
+            case 3: case 12: seg(left, right); break;
+            case 4: case 11: seg(top, right); break;
+            case 5: seg(left, top); seg(bottom, right); break;
+            case 6: case 9: seg(top, bottom); break;
+            case 7: case 8: seg(left, top); break;
+            case 10: seg(left, bottom); seg(top, right); break;
+          }
+        }
+      }
+      ctx.stroke();
+    };
+    if (reduced) { draw(0); return; }
+    whileVisible(canvas, draw, () => 1000 / 30);
+  }
+  const css = getComputedStyle(document.documentElement);
+  document.querySelectorAll("[data-contours]").forEach((c) => contours(c, {
+    stroke: c.dataset.contours === "dark" ? "rgb(255 255 255 / .1)" : css.getPropertyValue("--contour").trim(),
+    width: c.dataset.contours === "dark" ? 1 : 1.4,
+  }));
+
+  // ── Chequered seam: the light ground carries into the dark block, breaks into a chequer and burns off ──
+  const seam = document.getElementById("seam");
+  const brandsSec = document.getElementById("brands");
+  {
+    const ctx = seam.getContext("2d");
+    const SIZE = 24;
+    let w = 0, h = 0, noise = [];
+    const resize = () => {
+      w = seam.clientWidth; h = seam.clientHeight;
+      seam.width = w; seam.height = h;
+      const cols = Math.ceil(w / SIZE), rows = Math.ceil(h / SIZE);
+      noise = Array.from({ length: rows }, () => Array.from({ length: cols }, () => Math.random()));
+    };
+    new ResizeObserver(resize).observe(seam); resize();
+    const fill = css.getPropertyValue("--background").trim();
+    let last = -1;
+    const draw = () => {
+      // 0 while the block's top is at the foot of the viewport, 1 once it reaches the top.
+      const top = brandsSec.getBoundingClientRect().top;
+      const p = clamp(1 - top / innerHeight, 0, 1) * 1.25 - 0.1;
+      if (Math.abs(p - last) < 0.002) return;
+      last = p;
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = fill;
+      const rows = noise.length;
+      for (let r = 0; r < rows; r++) for (let c = 0; c < noise[r].length; c++) {
+        const y = r / Math.max(1, rows - 1);
+        const v = (1 - y) * 0.75 + ((r + c) % 2) * 0.18 + noise[r][c] * 0.14;
+        if (v > p) ctx.fillRect(c * SIZE, r * SIZE, SIZE + 0.5, SIZE + 0.5);
+      }
+    };
+    if (reduced) { ctx.clearRect(0, 0, w, h); } else whileVisible(seam, draw, () => 10);
+  }
+
+  // ── Timeline: progress thread, turning marker, parallax layers ──
+  const tl = document.getElementById("timeline");
+  const thread = document.getElementById("thread"), marker = document.getElementById("marker");
+  const rows = [...tl.querySelectorAll(".row")];
+  const tlTick = () => {
+    const bb = tl.getBoundingClientRect(), vh = innerHeight;
+    // center_bottom → center_top style scrub: start when the top crosses mid-screen, end when the bottom does.
+    const start = bb.top - vh / 2, length = bb.height;
+    const p = clamp(-start / length, 0, 1);
+    thread.style.transform = `scaleY(${p})`;
+    marker.style.top = `calc(${p * 100}% - 6px)`;
+    marker.style.transform = `rotate(${p * 450}deg)`;
+    if (matchMedia("(min-width: 1024px)").matches) {
+      for (const row of rows) {
+        const r = row.getBoundingClientRect();
+        const off = (r.top + r.height / 2 - vh / 2) / vh;
+        row.querySelector(".plate").style.transform = `translateY(${off * -28}px)`;
+        row.querySelector(".copy").style.transform = `translateY(${off * 18}px)`;
+      }
+    }
+  };
+  if (reduced) tlTick(); else whileVisible(tl, tlTick, () => 10);
+
+  // ── Hero photo leans toward the cursor ──
+  const photo = document.getElementById("heroPhoto");
+  if (!reduced && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    const tx = new Spring(0, CFG.TILT), ty = new Spring(0, CFG.TILT);
+    const apply = () => (photo.querySelector("img").style.transform = `scale(1.08) translate(${tx.value * -12}px, ${ty.value * -10}px)`);
+    tx.onChange = ty.onChange = apply;
+    addEventListener("pointermove", (e) => {
+      if (scrollY > innerHeight) return;
+      tx.to((e.clientX / innerWidth) * 2 - 1); ty.to((e.clientY / innerHeight) * 2 - 1);
+    }, { passive: true });
+  }
+
+  // ── Loading veil: progress creeps to 0.7, completes on ready, then lifts in three beats ──
+  const veil = document.getElementById("veil");
+  const veilFill = document.getElementById("veilFill"), veilBar = document.getElementById("veilBar");
+  const veilContent = document.getElementById("veilContent"), veilMeter = document.getElementById("veilMeter");
+  const veilName = document.getElementById("veilName");
+  const startHero = () => animated.filter(inHero).forEach((el) => play(el));
+  if (reduced) {
+    veil.remove(); startHero();
+  } else {
+    const progress = new Spring(0, CFG.WAIT, (v) => {
+      veilFill.style.transform = `scaleY(${v})`; veilBar.style.transform = `scaleX(${v})`;
+    });
+    progress.to(0.7);
+    const name = new Spring(0, CFG.LABEL, (v) => { veilName.style.opacity = v; veilName.style.transform = `translateY(${(1 - v) * 0.6}rem)`; });
+    name.to(1, 260);
+    const ready = Promise.race([
+      Promise.all([
+        new Promise((r) => (document.readyState === "complete" ? r() : addEventListener("load", r, { once: true }))),
+        document.fonts?.ready ?? Promise.resolve(),
+      ]),
+      new Promise((r) => setTimeout(r, 4000)),
+    ]);
+    ready.then(() => {
+      progress.tension = CFG.READY.tension; progress.friction = CFG.READY.friction;
+      progress.to(1);
+      veil.style.pointerEvents = "none";
+      veil.setAttribute("aria-label", "Loaded");
+      const clear = new Spring(1, CFG.CLEAR, (v) => {
+        veilContent.style.opacity = v; veilContent.style.transform = `translateY(${(1 - v) * -0.75}rem)`;
+        veilMeter.style.opacity = v;
+      });
+      clear.to(0, 240);
+      setTimeout(() => {
+        const lift = new Spring(1, CFG.VEIL, (v) => (veil.style.opacity = v));
+        lift.to(0);
+        veilUp = false;
+        lenis?.start();
+        startHero();
+        // Remove the veil only once it has actually rendered transparent.
+        const t0 = performance.now();
+        const unsub = subscribe(() => {
+          if (+getComputedStyle(veil).opacity <= 0.004 || performance.now() - t0 > 3000) { veil.remove(); unsub(); }
+        });
+      }, 430 + 240);
+    });
+  }
 </script>
 </body>
 </html>
